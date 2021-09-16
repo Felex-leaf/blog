@@ -1,24 +1,83 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import TWEEN from '@tweenjs/tween.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { IAllTexture, IMesh } from './interface';
+import { IOrbitControls, IPosition } from '@/pages/interface';
 
 let scene: THREE.Scene | null = null;
 let camera: THREE.PerspectiveCamera | null = null;
 let renderer: THREE.WebGLRenderer | null = null;
 let textureLoader: THREE.TextureLoader | null = null;
+let controls: IOrbitControls | null = null;
+
+const moveCamera = (
+    oldP: IPosition,
+    oldT: IPosition,
+    newP: IPosition,
+    newT: IPosition,
+    callback?: () => void,
+) => {
+    let tween = new TWEEN.Tween({
+        x1: oldP.x,
+        y1: oldP.y,
+        z1: oldP.z,
+        x2: oldT.x,
+        y2: oldT.y,
+        z2: oldT.z,
+    });
+    tween.to(
+        {
+            x1: newP.x,
+            y1: newP.y,
+            z1: newP.z,
+            x2: newT.x,
+            y2: newT.y,
+            z2: newT.z,
+        },
+        2000,
+    );
+    // 每一帧执行函数 、这个地方就是核心了、每变一帧跟新一次页面元素
+    tween.onUpdate((object) => {
+        if (!camera || !controls) return;
+        camera.position.set(object.x1, object.y1, object.z1);
+
+        controls.target.x = object.x2;
+        controls.target.y = object.y2;
+        controls.target.z = object.z2;
+        controls.update();
+    });
+
+    // 动画完成后的执行函数
+    tween.onComplete(() => {
+        if (controls) controls.enabled = true;
+        callback && callback();
+    });
+
+    tween.easing(TWEEN.Easing.Cubic.InOut);
+    // 这个函数必须有、这个是启动函数、不加不能启动
+    tween.start();
+    const animate = () => {
+        requestAnimationFrame(animate);
+        TWEEN.update();
+    };
+    animate();
+};
+
+const poiPosArray = [{ x: 0.8, y: 1, z: 0.4, frame: 1 }];
 
 let poiObjects: THREE.Sprite[] = [];
-const poiPosArray = [
-    { x: -1.47, y: 0.87, z: -0.36, frame: 1 },
-    { x: -1.46, y: 0.49, z: -0.69, frame: 2 },
-    { x: 1.5, y: 0.7, z: 0, frame: 8 },
-    { x: 0.33, y: 1.79, z: 0, frame: 3 },
-    { x: 0.73, y: 1.38, z: -0.8, frame: 5 },
-    { x: -0.1, y: 1.17, z: 0.88, frame: 6 },
-    { x: -1.16, y: 0.16, z: 0.89, frame: 7 },
-];
+let oldP: IPosition | undefined = {
+    x: 0,
+    y: 0,
+    z: 5,
+};
+let oldT: IPosition | undefined = {
+    x: 0,
+    y: 0,
+    z: 0,
+};
 
 export default function IndexPage() {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -36,7 +95,11 @@ export default function IndexPage() {
         renderer.setSize(document.body.clientWidth, document.body.clientHeight);
         const container = containerRef.current;
         if (container) container.appendChild(renderer.domElement);
-        new OrbitControls(camera, renderer.domElement);
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.addEventListener('change', () => {
+            oldP = camera?.position;
+            oldT = controls?.target;
+        });
         loadModel();
         loop();
         addLight();
@@ -109,7 +172,24 @@ export default function IndexPage() {
 
             const intersects = raycaster.intersectObjects(poiObjects);
             if (intersects.length > 0) {
-                console.log(intersects);
+                const {
+                    point: { x, y, z },
+                } = intersects[0];
+                if (oldP && oldT)
+                    moveCamera(
+                        oldP,
+                        oldT,
+                        {
+                            x: x + 0.1,
+                            y: y - 0.1,
+                            z: z - 0.4,
+                        },
+                        {
+                            x: 1,
+                            y: 0.5,
+                            z: 1.5,
+                        },
+                    );
             }
         });
     };
