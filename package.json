@@ -1,5 +1,6 @@
 {
   "private": true,
+  "homepage": "https://felex-leaf.github.io/React-Component/",
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
