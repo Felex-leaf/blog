@@ -10,6 +10,8 @@
 # misc
 .DS_Store
 
+/dist
+
 # umi
 /src/.umi
 /src/.umi-production
