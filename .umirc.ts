@@ -3,7 +3,7 @@ import { defineConfig } from 'umi';
 import routes from './config/routes';
 
 export default defineConfig({
-    base: '/blog/',
+    base: '/',
     publicPath: '/React-Component/',
     hash: true,
     history: {
@@ -15,7 +15,8 @@ export default defineConfig({
     },
     fastRefresh: {},
     theme: {
-        '@themeColor': 'var(--theme-color)',
+        '@themeBgColor': 'var(--theme-bgColor)',
+        '@themeColor': 'var(--theme-Color)',
     },
     routes,
 });

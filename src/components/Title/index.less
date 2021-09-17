@@ -1,0 +1,18 @@
+.title {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 120px;
+    font-size: 36px;
+    color: @themeColor;
+    margin-bottom: 80px;
+    position: relative;
+    &::after {
+        content: attr(data-content);
+        position: absolute;
+        top: 40px;
+        color: rgba(105, 140, 214, 0.1);
+        font-size: 40px;
+        text-shadow: 0px 1px 4px rgba(105, 140, 214, 0.1);
+    }
+}
