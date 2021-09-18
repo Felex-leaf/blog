@@ -4,7 +4,7 @@ import routes from './config/routes';
 
 export default defineConfig({
     base: '/',
-    publicPath: '/React-Component/',
+    publicPath: '/blog/',
     hash: true,
     history: {
         type: 'hash',
