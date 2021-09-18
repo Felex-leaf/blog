@@ -9,20 +9,47 @@ interface IJumpTextInput {
     className?: string;
     placeholder?: string;
     theme?: string;
+    positiveControl?: boolean;
     onChange?: (value: number | string) => void;
 }
 
-export default function JumpTextInput({ value, onChange, className, placeholder = 'felex', theme }: IJumpTextInput) {
-    const [ cValue, setCValue ] = useState<number | string>();
+export default function JumpTextInput({
+    value,
+    onChange,
+    className,
+    placeholder = 'felex',
+    theme,
+    positiveControl,
+}: IJumpTextInput) {
+    const [cValue, setCValue] = useState<number | string>();
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange && onChange(e.target.value)
-        setCValue(e.target.value)
-    }
-    const textArr = useMemo(() => placeholder.split('').map((item, idx) => <span style={{ transitionDelay: `${idx * 50}ms` }}>{item}</span>), [placeholder])
+        onChange && onChange(e.target.value);
+        setCValue(e.target.value);
+    };
+    const textArr = useMemo(
+        () =>
+            placeholder.split('').map((item, idx) => (
+                <span style={{ transitionDelay: `${idx * 50}ms` }} key={idx}>
+                    {item}
+                </span>
+            )),
+        [placeholder],
+    );
     return (
-        <div className={classNames([styles.jumpTextInput, className])} style={{ borderBottomColor: theme }}>
-            <Input value={value ?? cValue} onChange={handleChange} bordered={false} />
-            <div className={styles.placeholder} style={{ color: theme }}>{textArr}</div>
+        <div
+            className={classNames([styles.jumpTextInput, className])}
+            style={{ borderBottomColor: theme }}
+        >
+            <Input
+                value={positiveControl ? value : value ?? cValue}
+                onChange={handleChange}
+                bordered={false}
+            />
+            {!cValue && !value && (
+                <div className={styles.placeholder} style={{ color: theme }}>
+                    {textArr}
+                </div>
+            )}
         </div>
     );
 }

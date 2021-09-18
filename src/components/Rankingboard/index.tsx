@@ -10,13 +10,15 @@ import { useEffect } from 'react';
 import { Modal } from 'antd';
 import RankingList from './RankingList';
 import styles from './index.less';
+import { CSSProperties } from 'react';
 
 interface IRankingboard {
     onRankingCallback?: () => void;
+    style?: CSSProperties;
 }
 
 const Rankingboard = (props: IRankingboard) => {
-    const { onRankingCallback } = props;
+    const { onRankingCallback, style } = props;
     const selfInfo = {
         orgId: null,
         userId: 56036,
@@ -28,13 +30,7 @@ const Rankingboard = (props: IRankingboard) => {
     useEffect(() => {}, []);
 
     return (
-        <Modal
-            visible
-            footer={null}
-            onCancel={onRankingCallback}
-            className={styles.rankingboard}
-            centered
-        >
+        <div className={styles.rankingWrap} style={style}>
             <div className={styles.rankingBoardTop}>
                 <div className={styles.rankingBoardTopLeft}>
                     <img alt="" src={selfInfo.avatar} className={styles.rankingBoardAvater} />
@@ -46,7 +42,7 @@ const Rankingboard = (props: IRankingboard) => {
                 </div>
             </div>
             <RankingList />
-        </Modal>
+        </div>
     );
 };
 

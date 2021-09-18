@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Route } from '@ant-design/pro-layout/lib/typings';
 
 import { PAGE_ENUM } from '@/configs';
+import { jump } from '@/utils';
 
 import styles from './index.less';
 
@@ -23,14 +24,6 @@ export default function BlogLayout({
     children,
 }: IBlogLayout) {
     const [selectedKeys, setSelectedKeys] = useState('');
-    const jumpToHome = () => {
-        if (location.pathname === PAGE_ENUM.HOME) return;
-        history.push('/home');
-    };
-    const jump = (path = '') => {
-        if (!path) return;
-        history.push(path);
-    };
 
     useEffect(() => {
         setSelectedKeys(location.pathname);
@@ -40,8 +33,11 @@ export default function BlogLayout({
         <main className={styles.container}>
             <header className={styles.header}>
                 <div className={classNames(['typeArea', styles.warp])}>
-                    <h1 className={classNames([styles.logo, 'scaleAnm'])} onClick={jumpToHome}>
-                        Felex{' '}
+                    <h1
+                        className={classNames([styles.logo, 'scaleAnm'])}
+                        onClick={jump.bind(null, PAGE_ENUM.HOME)}
+                    >
+                        Felex
                     </h1>
                     <Menu theme="dark" mode="horizontal" selectedKeys={[selectedKeys]}>
                         {routes &&

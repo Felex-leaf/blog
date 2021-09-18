@@ -7,7 +7,7 @@ interface IButton {
     children?: string;
     style?: CSSProperties;
     className?: string;
-    onClick: (e: MouseEvent) => void;
+    onClick?: (e: MouseEvent) => void;
 }
 
 function Button(props: IButton) {

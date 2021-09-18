@@ -40,7 +40,9 @@
     left: calc(50% - 25px);
     top: calc(50% - 25px);
     &.hasAnimation {
-        animation: swing 1.5s 0.15s linear infinite;
+        :global {
+            animation: swing 1.5s 0.15s linear infinite;
+        }
     }
     z-index: 2;
 }

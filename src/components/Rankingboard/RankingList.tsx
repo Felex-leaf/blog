@@ -99,8 +99,10 @@ const RankingList = () => {
             <div className={styles.rankingListContent}>
                 <div className={styles.rankingContentItemNav}>
                     <div className={styles.rankingContentLeft}>名次</div>
+                    <div style={{ flex: 1 }}></div>
                     <div className={styles.rankingContentCenter}>用户</div>
                     <span className={styles.rankingContentRight}>积分值</span>
+                    <div style={{ flex: 1 }}></div>
                 </div>
                 <div style={{ position: 'relative' }}>
                     <div className={styles.scrollBox} id="scrollBox">
@@ -120,7 +122,7 @@ const RankingList = () => {
                                                 ? {
                                                       position: 'absolute',
                                                       top,
-                                                      width: '708px',
+                                                      width: 'calc(100% - 60px)',
                                                       backgroundColor: '#fff',
                                                       transform: 'scale(1.03)',
                                                       border: '1px solid gold',
@@ -147,6 +149,7 @@ const RankingList = () => {
                                                 {item.ranking}
                                             </span>
                                         </div>
+                                        <div style={{ flex: 1 }}></div>
                                         <div className={styles.rankingContentCenter}>
                                             <img
                                                 className={styles.rankingTableAvater}
@@ -173,6 +176,7 @@ const RankingList = () => {
                                         >
                                             {item.integralNum}
                                         </span>
+                                        <div style={{ flex: 1 }}></div>
                                     </div>
                                 ))}
                             </ListAnimation>

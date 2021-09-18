@@ -19,4 +19,5 @@ export default defineConfig({
         '@themeColor': 'var(--theme-Color)',
     },
     routes,
+    dynamicImport: {},
 });

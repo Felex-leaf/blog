@@ -240,10 +240,10 @@ export default class ListAnimation extends Component<IListAnimationProps> {
                     <div
                         style={{
                             position: 'fixed',
-                            top: -38,
-                            left: -left,
-                            height: `${height}px`,
-                            width: `${width}px`,
+                            top: 0,
+                            left: 0,
+                            height: '100vh',
+                            width: '100vw',
                         }}
                     >
                         {lottieAnimationStart && (

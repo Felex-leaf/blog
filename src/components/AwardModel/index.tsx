@@ -19,6 +19,7 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
         showStar: false,
         boxX: 0,
         boxY: 0,
+        add: false,
     };
     audio: HTMLAudioElement[] = [];
     t: Array<NodeJS.Timer | number> = [];
@@ -121,16 +122,23 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
     };
     componentDidUpdate(prevProps: any) {
         if (
-            prevProps.onStarAnimation !== this.props.onStarAnimation &&
+            !this.state.add &&
+            this.props.onStarAnimation &&
             this.props.onStarAnimation &&
             this.props.integralNum
         ) {
+            this.setState({
+                add: true,
+            });
             const addIntegral = (i: number) => {
                 this.t.push(
                     setTimeout(() => {
                         if (i === this.props.integralNum + 1) {
                             this.setState({
                                 showStar: false,
+                            });
+                            this.setState({
+                                add: false,
                             });
                         } else if (i < this.props.integralNum) {
                             this.setState({
@@ -140,9 +148,11 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
                     }, 150 * i),
                 );
             };
-            for (let i = 0; i <= this.props.integralNum + 1; i++) {
-                addIntegral(i);
-            }
+            setTimeout(() => {
+                for (let i = 0; i <= this.props.integralNum + 1; i++) {
+                    addIntegral(i);
+                }
+            }, 2000);
         }
     }
 
@@ -160,8 +170,13 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
         }
     };
 
+    handlerHideModal = () => {
+        const { hideModal } = this.props;
+        if (hideModal) hideModal();
+    };
+
     render() {
-        const { integralNum, onStarAnimation, hideModal } = this.props;
+        const { integralNum, onStarAnimation } = this.props;
         const { userIntegralNum, showStar, boxX, boxY } = this.state;
         const style = integralNum < 10 ? { left: boxX - 15, top: boxY } : {};
         const defaultOptions = {
@@ -181,7 +196,7 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
         return (
             <>
                 {showStar && (
-                    <div className={styles.star_modal} onClick={hideModal}>
+                    <div className={styles.star_modal} onClick={this.handlerHideModal}>
                         <Ranking
                             integralNum={userIntegralNum}
                             onStarAnimation={onStarAnimation || false}

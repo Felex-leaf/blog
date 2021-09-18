@@ -1,27 +1,9 @@
-.rankingboard {
-    top: 0;
-    display: inline-block;
-    vertical-align: middle;
-    margin: auto;
-    color: white;
-    :global {
-        .ant-modal-content {
-            background-color: #e9f3f8;
-            border-radius: 18px;
-            height: calc(100vh - 60px);
-            width: 768px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .ant-modal-body {
-            padding: 0px;
-        }
-        .ant-table-body {
-            max-height: calc(100vh - 460px) !important;
-        }
-    }
+.rankingWrap {
+    background-color: #e9f3f8;
+    border-radius: 18px;
+    height: calc(100vh - 60px);
+    width: 375px;
+    margin: 0 auto;
 }
 .rankingBoardName {
     margin-left: 10px;
@@ -91,6 +73,7 @@
     border-bottom: 1px solid #d8d8d8;
     width: 100%;
     position: relative;
+    justify-content: space-between;
 }
 .selfFixed {
     background-color: white;
@@ -121,6 +104,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex: 1;
+    min-width: 70px;
     :global {
         .rankingAward1 {
             display: inline-block;
@@ -152,18 +137,19 @@
 }
 .rankingContentRight {
     text-align: right;
-    width: 100px;
     margin: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex: 1;
+    min-width: 60px;
 }
 .rankingContentCenter {
-    width: 280px;
-    margin-left: 100px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex: 4;
+    width: 0;
 }
 .rankingContentItemNav {
     border-radius: 12px 12px 0 0;
@@ -182,13 +168,7 @@
     background-color: white;
 }
 .rankingContent {
-    position: absolute;
-    top: -14px;
-    height: 84px;
-    right: -30px;
     padding-top: 14px;
-    margin-right: 30px;
-
     > span {
         margin-top: 4px;
         line-height: 25px;
@@ -231,12 +211,12 @@
 
 .rankingIcon {
     padding: 7px 8px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.7);
     background-size: 100% 100%;
     height: 37px;
     min-width: 80px;
     border-radius: 6px;
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 0 0 rgba(255, 255, 255, 0.8);
     justify-content: flex-start;
     align-items: center;
     display: flex;

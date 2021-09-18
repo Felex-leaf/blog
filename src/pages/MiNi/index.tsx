@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { Spin } from 'antd';
 import TWEEN from '@tweenjs/tween.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -71,7 +72,7 @@ let poiObjects: THREE.Sprite[] = [];
 let oldP: IPosition | undefined = {
     x: 0,
     y: 0,
-    z: 5,
+    z: 3,
 };
 let oldT: IPosition | undefined = {
     x: 0,
@@ -81,6 +82,7 @@ let oldT: IPosition | undefined = {
 
 export default function IndexPage() {
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const [loading, setLoading] = useState(true);
     const init = () => {
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(
@@ -211,7 +213,10 @@ export default function IndexPage() {
             },
             function (xhr) {
                 //侦听模型加载进度
-                console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+                console.log((xhr.loaded / 13970297) * 100 + '% loaded');
+                if (xhr.loaded >= 13970297) {
+                    console.log('end');
+                }
             },
             function (error) {
                 //加载出错时的回调
@@ -375,6 +380,7 @@ export default function IndexPage() {
                                 case 'smart_shangexia':
                                     modelItem.material = new THREE.MeshPhongMaterial();
                                     modelItem.material.color = new THREE.Color(0);
+                                    setLoading(false);
                                     break;
                                 case 'smart_LOGO':
                                 case 'smart_paiqiguan':
@@ -419,5 +425,22 @@ export default function IndexPage() {
         init();
     }, []);
 
-    return <div ref={containerRef} />;
+    return (
+        <div
+            style={{
+                position: 'absolute',
+                top: 0,
+                height: '100vh',
+                width: '100vw',
+                background: 'rgba(0, 0, 0, .7)',
+            }}
+        >
+            <Spin tip="模型加载中..." spinning={loading} style={{ height: '100vh' }}>
+                <div
+                    style={{ position: 'absolute', top: 0, height: '100vh', width: '100vw' }}
+                    ref={containerRef}
+                />
+            </Spin>
+        </div>
+    );
 }
