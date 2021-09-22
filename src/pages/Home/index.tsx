@@ -195,7 +195,7 @@ const data = [
             <div className={styles.cardIntroduce}>
                 <div>熟悉 React 框架</div>
                 <div>熟悉 Vue 框架</div>
-                <div>了解 原生 小程序</div>
+                <div>了解 小程序</div>
             </div>
         ),
     },
