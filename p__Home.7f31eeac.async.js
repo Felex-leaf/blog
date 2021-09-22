@@ -3236,7 +3236,7 @@
                             }),
                             Object(R['jsx'])('div', { children: '\u719f\u6089 Vue \u6846\u67b6' }),
                             Object(R['jsx'])('div', {
-                                children: '\u4e86\u89e3 \u539f\u751f \u5c0f\u7a0b\u5e8f',
+                                children: '\u4e86\u89e3 \u5c0f\u7a0b\u5e8f',
                             }),
                         ],
                     }),
