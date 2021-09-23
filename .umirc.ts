@@ -49,7 +49,6 @@ export default defineConfig({
             ], // 过滤掉.ant-开头的class，不进行rem转换
         }),
     ],
-    mfsu: {},
     metas: [
         {
             name: 'keywords',
