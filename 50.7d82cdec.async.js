@@ -1,44 +1,35 @@
-(window['webpackJsonp'] = window['webpackJsonp'] || []).push([
-    [4],
+(self['webpackChunk'] = self['webpackChunk'] || []).push([
+    [50],
     {
-        '0n0R': function (t, e, i) {
+        96159: function (t, e, i) {
             'use strict';
-            i.d(e, 'b', function () {
-                return s;
-            }),
-                i.d(e, 'a', function () {
+            i.d(e, {
+                l$: function () {
+                    return s;
+                },
+                Tm: function () {
                     return n;
-                });
-            var r = i('q1tI'),
-                s = r['isValidElement'];
+                },
+            });
+            var r = i(67294),
+                s = r.isValidElement;
             function a(t, e, i) {
-                return s(t)
-                    ? r['cloneElement'](t, 'function' === typeof i ? i(t.props || {}) : i)
-                    : e;
+                return s(t) ? r.cloneElement(t, 'function' === typeof i ? i(t.props || {}) : i) : e;
             }
             function n(t, e) {
                 return a(t, t, e);
             }
         },
-        JpO0: function (t, e, i) {
-            var r = i('CYMq'),
-                s = i('znrX');
-            i('czaS')('getPrototypeOf', function () {
-                return function (t) {
-                    return s(r(t));
-                };
-            });
+        85105: function (t, e, i) {
+            t.exports = { default: i(15175), __esModule: !0 };
         },
-        Lr1a: function (t, e, i) {
-            i('JpO0'), (t.exports = i('VSTI').Object.getPrototypeOf);
+        15175: function (t, e, i) {
+            i(71500), (t.exports = i(94731).Object.getPrototypeOf);
         },
-        'Yz+Y': function (t, e, i) {
-            t.exports = { default: i('Lr1a'), __esModule: !0 };
-        },
-        czaS: function (t, e, i) {
-            var r = i('USwo'),
-                s = i('VSTI'),
-                a = i('S4vA');
+        44903: function (t, e, i) {
+            var r = i(49901),
+                s = i(94731),
+                a = i(93777);
             t.exports = function (t, e) {
                 var i = (s.Object || {})[t] || Object[t],
                     n = {};
@@ -54,249 +45,16 @@
                     );
             };
         },
-        hxQi: function (t, e, i) {
-            'use strict';
-            Object.defineProperty(e, '__esModule', { value: !0 });
-            var r = i('QbLZ'),
-                s = E(r),
-                a = i('Yz+Y'),
-                n = E(a),
-                o = i('iCc5'),
-                h = E(o),
-                l = i('V7oC'),
-                p = E(l),
-                m = i('FYw3'),
-                f = E(m),
-                c = i('mRg0'),
-                d = E(c),
-                u = i('q1tI'),
-                y = E(u),
-                g = i('17x9'),
-                v = E(g),
-                b = i('lPHp'),
-                P = E(b);
-            function E(t) {
-                return t && t.__esModule ? t : { default: t };
-            }
-            var x = (function (t) {
-                function e() {
-                    var t, i, r, s;
-                    (0, h.default)(this, e);
-                    for (var a = arguments.length, o = Array(a), l = 0; l < a; l++)
-                        o[l] = arguments[l];
-                    return (
-                        (r = (0, f.default)(
-                            this,
-                            (t = e.__proto__ || (0, n.default)(e)).call.apply(t, [this].concat(o)),
-                        )),
-                        (i = r),
-                        (r.handleClickToPause = function () {
-                            r.anim.isPaused ? r.anim.play() : r.anim.pause();
-                        }),
-                        (s = i),
-                        (0, f.default)(r, s)
-                    );
-                }
-                return (
-                    (0, d.default)(e, t),
-                    (0, p.default)(e, [
-                        {
-                            key: 'componentDidMount',
-                            value: function () {
-                                var t = this.props,
-                                    e = t.options,
-                                    i = t.eventListeners,
-                                    r = e.loop,
-                                    a = e.autoplay,
-                                    n = e.animationData,
-                                    o = e.rendererSettings,
-                                    h = e.segments;
-                                (this.options = {
-                                    container: this.el,
-                                    renderer: 'svg',
-                                    loop: !1 !== r,
-                                    autoplay: !1 !== a,
-                                    segments: !1 !== h,
-                                    animationData: n,
-                                    rendererSettings: o,
-                                }),
-                                    (this.options = (0, s.default)({}, this.options, e)),
-                                    (this.anim = P.default.loadAnimation(this.options)),
-                                    this.registerEvents(i);
-                            },
-                        },
-                        {
-                            key: 'componentWillUpdate',
-                            value: function (t) {
-                                this.options.animationData !== t.options.animationData &&
-                                    (this.deRegisterEvents(this.props.eventListeners),
-                                    this.destroy(),
-                                    (this.options = (0, s.default)({}, this.options, t.options)),
-                                    (this.anim = P.default.loadAnimation(this.options)),
-                                    this.registerEvents(t.eventListeners));
-                            },
-                        },
-                        {
-                            key: 'componentDidUpdate',
-                            value: function () {
-                                this.props.isStopped
-                                    ? this.stop()
-                                    : this.props.segments
-                                    ? this.playSegments()
-                                    : this.play(),
-                                    this.pause(),
-                                    this.setSpeed(),
-                                    this.setDirection();
-                            },
-                        },
-                        {
-                            key: 'componentWillUnmount',
-                            value: function () {
-                                this.deRegisterEvents(this.props.eventListeners),
-                                    this.destroy(),
-                                    (this.options.animationData = null),
-                                    (this.anim = null);
-                            },
-                        },
-                        {
-                            key: 'setSpeed',
-                            value: function () {
-                                this.anim.setSpeed(this.props.speed);
-                            },
-                        },
-                        {
-                            key: 'setDirection',
-                            value: function () {
-                                this.anim.setDirection(this.props.direction);
-                            },
-                        },
-                        {
-                            key: 'play',
-                            value: function () {
-                                this.anim.play();
-                            },
-                        },
-                        {
-                            key: 'playSegments',
-                            value: function () {
-                                this.anim.playSegments(this.props.segments);
-                            },
-                        },
-                        {
-                            key: 'stop',
-                            value: function () {
-                                this.anim.stop();
-                            },
-                        },
-                        {
-                            key: 'pause',
-                            value: function () {
-                                ((this.props.isPaused && !this.anim.isPaused) ||
-                                    (!this.props.isPaused && this.anim.isPaused)) &&
-                                    this.anim.pause();
-                            },
-                        },
-                        {
-                            key: 'destroy',
-                            value: function () {
-                                this.anim.destroy();
-                            },
-                        },
-                        {
-                            key: 'registerEvents',
-                            value: function (t) {
-                                var e = this;
-                                t.forEach(function (t) {
-                                    e.anim.addEventListener(t.eventName, t.callback);
-                                });
-                            },
-                        },
-                        {
-                            key: 'deRegisterEvents',
-                            value: function (t) {
-                                var e = this;
-                                t.forEach(function (t) {
-                                    e.anim.removeEventListener(t.eventName, t.callback);
-                                });
-                            },
-                        },
-                        {
-                            key: 'render',
-                            value: function () {
-                                var t = this,
-                                    e = this.props,
-                                    i = e.width,
-                                    r = e.height,
-                                    a = e.ariaRole,
-                                    n = e.ariaLabel,
-                                    o = e.isClickToPauseDisabled,
-                                    h = e.title,
-                                    l = function (t) {
-                                        var e = void 0;
-                                        return (
-                                            (e = 'number' === typeof t ? t + 'px' : t || '100%'), e
-                                        );
-                                    },
-                                    p = (0, s.default)(
-                                        {
-                                            width: l(i),
-                                            height: l(r),
-                                            overflow: 'hidden',
-                                            margin: '0 auto',
-                                            outline: 'none',
-                                        },
-                                        this.props.style,
-                                    ),
-                                    m = o
-                                        ? function () {
-                                              return null;
-                                          }
-                                        : this.handleClickToPause;
-                                return y.default.createElement('div', {
-                                    ref: function (e) {
-                                        t.el = e;
-                                    },
-                                    style: p,
-                                    onClick: m,
-                                    title: h,
-                                    role: a,
-                                    'aria-label': n,
-                                    tabIndex: '0',
-                                });
-                            },
-                        },
-                    ]),
-                    e
-                );
-            })(y.default.Component);
-            (e.default = x),
-                (x.propTypes = {
-                    eventListeners: v.default.arrayOf(v.default.object),
-                    options: v.default.object.isRequired,
-                    height: v.default.oneOfType([v.default.string, v.default.number]),
-                    width: v.default.oneOfType([v.default.string, v.default.number]),
-                    isStopped: v.default.bool,
-                    isPaused: v.default.bool,
-                    speed: v.default.number,
-                    segments: v.default.arrayOf(v.default.number),
-                    direction: v.default.number,
-                    ariaRole: v.default.string,
-                    ariaLabel: v.default.string,
-                    isClickToPauseDisabled: v.default.bool,
-                    title: v.default.string,
-                }),
-                (x.defaultProps = {
-                    eventListeners: [],
-                    isStopped: !1,
-                    isPaused: !1,
-                    speed: 1,
-                    ariaRole: 'button',
-                    ariaLabel: 'animation',
-                    isClickToPauseDisabled: !1,
-                    title: '',
-                });
+        71500: function (t, e, i) {
+            var r = i(19411),
+                s = i(91146);
+            i(44903)('getPrototypeOf', function () {
+                return function (t) {
+                    return s(r(t));
+                };
+            });
         },
-        lPHp: function (module, exports, __webpack_require__) {
+        11248: function (module, exports, __webpack_require__) {
             var __WEBPACK_AMD_DEFINE_RESULT__;
             'undefined' !== typeof navigator &&
                 (function (t, e) {
@@ -5333,9 +5091,9 @@
                                     W,
                                     Y,
                                     X,
-                                    J,
                                     K,
-                                    $ = -1,
+                                    $,
+                                    J = -1,
                                     U = o,
                                     Z = f,
                                     Q = m,
@@ -5388,9 +5146,9 @@
                                                 (y = h.partialLength),
                                                 (l = 0)),
                                             (et = ''),
-                                            (J = ''),
-                                            (Y = ''),
                                             (K = ''),
+                                            (Y = ''),
+                                            ($ = ''),
                                             (it = this.defaultPropsArray);
                                     else {
                                         if (this._hasMaskedPath) {
@@ -5407,10 +5165,10 @@
                                                 }
                                                 tt = T[s].line;
                                             }
-                                            $ !== T[s].ind &&
-                                                (T[$] && (o += T[$].extra),
+                                            J !== T[s].ind &&
+                                                (T[J] && (o += T[J].extra),
                                                 (o += T[s].an / 2),
-                                                ($ = T[s].ind)),
+                                                (J = T[s].ind)),
                                                 (o += E[0] * T[s].an * 0.005);
                                             var ht = 0;
                                             for (F = 0; F < I; F += 1)
@@ -5647,7 +5405,7 @@
                                                     ')'),
                                             t.fillColorAnim &&
                                                 t.fc &&
-                                                (J =
+                                                (K =
                                                     'rgb(' +
                                                     Math.round(255 * q[0]) +
                                                     ',' +
@@ -5672,7 +5430,7 @@
                                             A.translate(z, N, 0),
                                                 (o -= E[0] * T[s].an * 0.005),
                                                 T[s + 1] &&
-                                                    $ !== T[s + 1].ind &&
+                                                    J !== T[s + 1].ind &&
                                                     ((o += T[s].an / 2),
                                                     (o += 0.001 * t.tr * t.finalSize));
                                         } else {
@@ -5734,16 +5492,16 @@
                                                   A.props[14],
                                                   A.props[15],
                                               ]),
-                                            (K = O);
+                                            ($ = O);
                                     }
                                     _ <= s
-                                        ? ((V = new LetterProps(K, Y, X, J, et, it)),
+                                        ? ((V = new LetterProps($, Y, X, K, et, it)),
                                           this.renderedLetters.push(V),
                                           (_ += 1),
                                           (this.lettersChangedFlag = !0))
                                         : ((V = this.renderedLetters[s]),
                                           (this.lettersChangedFlag =
-                                              V.update(K, Y, X, J, et, it) ||
+                                              V.update($, Y, X, K, et, it) ||
                                               this.lettersChangedFlag));
                                 }
                             }
@@ -15374,6 +15132,247 @@
                     }
                     var readyStateCheckInterval = setInterval(checkReady, 100);
                     return lottie;
+                });
+        },
+        79464: function (t, e, i) {
+            'use strict';
+            var r = i(88239),
+                s = E(r),
+                a = i(85105),
+                n = E(a),
+                o = i(99663),
+                h = E(o),
+                l = i(22600),
+                p = E(l),
+                m = i(49135),
+                f = E(m),
+                c = i(93196),
+                d = E(c),
+                u = i(67294),
+                y = E(u),
+                g = i(45697),
+                v = E(g),
+                b = i(11248),
+                P = E(b);
+            function E(t) {
+                return t && t.__esModule ? t : { default: t };
+            }
+            var x = (function (t) {
+                function e() {
+                    var t, i, r, s;
+                    (0, h.default)(this, e);
+                    for (var a = arguments.length, o = Array(a), l = 0; l < a; l++)
+                        o[l] = arguments[l];
+                    return (
+                        (r = (0, f.default)(
+                            this,
+                            (t = e.__proto__ || (0, n.default)(e)).call.apply(t, [this].concat(o)),
+                        )),
+                        (i = r),
+                        (r.handleClickToPause = function () {
+                            r.anim.isPaused ? r.anim.play() : r.anim.pause();
+                        }),
+                        (s = i),
+                        (0, f.default)(r, s)
+                    );
+                }
+                return (
+                    (0, d.default)(e, t),
+                    (0, p.default)(e, [
+                        {
+                            key: 'componentDidMount',
+                            value: function () {
+                                var t = this.props,
+                                    e = t.options,
+                                    i = t.eventListeners,
+                                    r = e.loop,
+                                    a = e.autoplay,
+                                    n = e.animationData,
+                                    o = e.rendererSettings,
+                                    h = e.segments;
+                                (this.options = {
+                                    container: this.el,
+                                    renderer: 'svg',
+                                    loop: !1 !== r,
+                                    autoplay: !1 !== a,
+                                    segments: !1 !== h,
+                                    animationData: n,
+                                    rendererSettings: o,
+                                }),
+                                    (this.options = (0, s.default)({}, this.options, e)),
+                                    (this.anim = P.default.loadAnimation(this.options)),
+                                    this.registerEvents(i);
+                            },
+                        },
+                        {
+                            key: 'componentWillUpdate',
+                            value: function (t) {
+                                this.options.animationData !== t.options.animationData &&
+                                    (this.deRegisterEvents(this.props.eventListeners),
+                                    this.destroy(),
+                                    (this.options = (0, s.default)({}, this.options, t.options)),
+                                    (this.anim = P.default.loadAnimation(this.options)),
+                                    this.registerEvents(t.eventListeners));
+                            },
+                        },
+                        {
+                            key: 'componentDidUpdate',
+                            value: function () {
+                                this.props.isStopped
+                                    ? this.stop()
+                                    : this.props.segments
+                                    ? this.playSegments()
+                                    : this.play(),
+                                    this.pause(),
+                                    this.setSpeed(),
+                                    this.setDirection();
+                            },
+                        },
+                        {
+                            key: 'componentWillUnmount',
+                            value: function () {
+                                this.deRegisterEvents(this.props.eventListeners),
+                                    this.destroy(),
+                                    (this.options.animationData = null),
+                                    (this.anim = null);
+                            },
+                        },
+                        {
+                            key: 'setSpeed',
+                            value: function () {
+                                this.anim.setSpeed(this.props.speed);
+                            },
+                        },
+                        {
+                            key: 'setDirection',
+                            value: function () {
+                                this.anim.setDirection(this.props.direction);
+                            },
+                        },
+                        {
+                            key: 'play',
+                            value: function () {
+                                this.anim.play();
+                            },
+                        },
+                        {
+                            key: 'playSegments',
+                            value: function () {
+                                this.anim.playSegments(this.props.segments);
+                            },
+                        },
+                        {
+                            key: 'stop',
+                            value: function () {
+                                this.anim.stop();
+                            },
+                        },
+                        {
+                            key: 'pause',
+                            value: function () {
+                                ((this.props.isPaused && !this.anim.isPaused) ||
+                                    (!this.props.isPaused && this.anim.isPaused)) &&
+                                    this.anim.pause();
+                            },
+                        },
+                        {
+                            key: 'destroy',
+                            value: function () {
+                                this.anim.destroy();
+                            },
+                        },
+                        {
+                            key: 'registerEvents',
+                            value: function (t) {
+                                var e = this;
+                                t.forEach(function (t) {
+                                    e.anim.addEventListener(t.eventName, t.callback);
+                                });
+                            },
+                        },
+                        {
+                            key: 'deRegisterEvents',
+                            value: function (t) {
+                                var e = this;
+                                t.forEach(function (t) {
+                                    e.anim.removeEventListener(t.eventName, t.callback);
+                                });
+                            },
+                        },
+                        {
+                            key: 'render',
+                            value: function () {
+                                var t = this,
+                                    e = this.props,
+                                    i = e.width,
+                                    r = e.height,
+                                    a = e.ariaRole,
+                                    n = e.ariaLabel,
+                                    o = e.isClickToPauseDisabled,
+                                    h = e.title,
+                                    l = function (t) {
+                                        var e = void 0;
+                                        return (
+                                            (e = 'number' === typeof t ? t + 'px' : t || '100%'), e
+                                        );
+                                    },
+                                    p = (0, s.default)(
+                                        {
+                                            width: l(i),
+                                            height: l(r),
+                                            overflow: 'hidden',
+                                            margin: '0 auto',
+                                            outline: 'none',
+                                        },
+                                        this.props.style,
+                                    ),
+                                    m = o
+                                        ? function () {
+                                              return null;
+                                          }
+                                        : this.handleClickToPause;
+                                return y.default.createElement('div', {
+                                    ref: function (e) {
+                                        t.el = e;
+                                    },
+                                    style: p,
+                                    onClick: m,
+                                    title: h,
+                                    role: a,
+                                    'aria-label': n,
+                                    tabIndex: '0',
+                                });
+                            },
+                        },
+                    ]),
+                    e
+                );
+            })(y.default.Component);
+            (e.Z = x),
+                (x.propTypes = {
+                    eventListeners: v.default.arrayOf(v.default.object),
+                    options: v.default.object.isRequired,
+                    height: v.default.oneOfType([v.default.string, v.default.number]),
+                    width: v.default.oneOfType([v.default.string, v.default.number]),
+                    isStopped: v.default.bool,
+                    isPaused: v.default.bool,
+                    speed: v.default.number,
+                    segments: v.default.arrayOf(v.default.number),
+                    direction: v.default.number,
+                    ariaRole: v.default.string,
+                    ariaLabel: v.default.string,
+                    isClickToPauseDisabled: v.default.bool,
+                    title: v.default.string,
+                }),
+                (x.defaultProps = {
+                    eventListeners: [],
+                    isStopped: !1,
+                    isPaused: !1,
+                    speed: 1,
+                    ariaRole: 'button',
+                    ariaLabel: 'animation',
+                    isClickToPauseDisabled: !1,
+                    title: '',
                 });
         },
     },
