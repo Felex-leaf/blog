@@ -63,5 +63,9 @@ export default defineConfig({
             name: 'author',
             content: 'Felex',
         },
+        {
+            name: 'viewport',
+            content: 'width=device-width,viewport-fit=cover',
+        },
     ],
 });
