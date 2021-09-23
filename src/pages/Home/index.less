@@ -1,14 +1,42 @@
 .bannerWrap {
     background-color: @themeBgColor;
+    .forPad({
+        margin-bottom: 0px!important;
+        .cardWrap > div { 
+            position: relative;
+            top: -40px;
+        }
+        .banner {
+            flex-direction: column;
+            img {
+                height: 60%;
+            }
+        }
+        .dontRbanner {
+            padding-top: 20px;
+        }
+        .titleWrap {
+            align-items: center;
+        }
+        .dontRTitle {
+            font-size: 28px;
+        }
+        .dontRDescTitle {
+            font-size: 20px!important;
+        }
+    });
 }
+
 .banner {
-    height: 550px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     img {
         height: 100%;
     }
+}
+.dontRbanner {
+    height: 500px;
 }
 .titleWrap {
     display: flex;
@@ -23,7 +51,12 @@
     height: auto;
     font-weight: 700;
     color: #eee;
+}
+.dontRTitle {
     font-size: 38px;
+}
+.dontRDescTitle {
+    font-size: 30px !important;
 }
 .button {
     margin-top: 20px;
@@ -37,11 +70,23 @@
     justify-content: space-between;
 }
 .self {
+    .forPhone({
+        flex-direction: column;
+        height: 800px;
+        .imgWrap {
+            width: 100%;
+            flex: 3!important;
+        }
+        .introduce {
+            padding: 0;
+            padding-top: 40px;
+        }
+    });
     .imgWrap {
-        height: 100%;
         text-align: center;
+        height: 100%;
         flex: 1;
-        background: #6d8bea url(../../assets/selfbg.png) center/55% no-repeat;
+        background: #6d8bea url(../../assets/selfbg.png) center/contain no-repeat;
         overflow: hidden;
     }
 }
@@ -56,14 +101,15 @@
 }
 
 .cardWrap {
-    height: 150px;
     position: relative;
     & > div {
         position: absolute;
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
+        left: 20px;
         top: -80px;
-        width: 100%;
+        width: calc(100% - 40px);
     }
 }
 
@@ -82,23 +128,41 @@
 }
 
 .cardIntroduce {
-    font-size: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: #999;
     height: 100%;
+    & > div {
+        .ellipsis(1);
+    }
 }
 
 .blogArticleWrap {
     margin-top: 20px !important;
+    :global {
+        .ant-row {
+            height: 400px;
+            .forPhone(
+                {
+                    height: 455px;
+                }
+            );
+            .forXs({
+                height: 800px;
+            });
+        }
+    }
 }
 
 .blogArticle {
     align-items: flex-start;
-    height: 400px;
+    height: 100%;
+    .forXs({
+        height: 40%;
+    });
     .imgWrap {
-        height: 400px;
+        height: 100%;
         background: url('../../assets/cover.jpg') center/cover no-repeat;
     }
 }
@@ -127,6 +191,6 @@
 }
 
 .footerDec {
-    color: #999;
+    color: #eee;
     display: block;
 }

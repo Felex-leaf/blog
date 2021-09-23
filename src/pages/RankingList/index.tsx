@@ -22,19 +22,21 @@ export default function RankingList() {
         setIsPC(!isPC);
     };
     return (
-        <div className={styles.container}>
-            <div className={styles.buttonWrap}>
+        <div className={styles.dontRContainer}>
+            <div className={styles.dontRbuttonWrap}>
                 <RankingButton />
                 <Button style={{ marginTop: 10 }} onClick={onRankingCallback}>
                     重播
                 </Button>
-                <div>
+                <div className={styles.isShow}>
                     <Button style={{ marginTop: 10 }} onClick={change}>
                         设备切换
                     </Button>
                 </div>
             </div>
-            {show && <Rankingboard style={{ width: isPC ? 768 : 375 }} />}
+            {show && (
+                <Rankingboard style={isPC ? { width: 768 } : { width: '100%', maxWidth: 375 }} />
+            )}
         </div>
     );
 }

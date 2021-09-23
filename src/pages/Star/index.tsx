@@ -55,7 +55,7 @@ export default function Home() {
             <JumpTextInput
                 positiveControl
                 onChange={change}
-                className={styles.input}
+                className={styles.dontRInput}
                 placeholder="请输入1-10数字（星星数）"
                 value={integralNum}
             />

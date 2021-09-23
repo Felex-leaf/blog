@@ -1,11 +1,20 @@
-.container {
+.dontRContainer {
     background-color: #333;
     height: calc(100vh - 60px);
     width: 100%;
 }
 
-.buttonWrap {
+.dontRbuttonWrap {
     position: absolute;
     top: 80px;
     left: 10px;
+    padding: 0px 20px 20px 20px;
+    .forPhone({
+        background-color: rgba(0, 0, 0, 0.5);
+    });
+}
+.isShow {
+    .forPhone({
+        display: none;
+    });
 }

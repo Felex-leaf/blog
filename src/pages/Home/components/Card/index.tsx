@@ -19,8 +19,14 @@ export default function HomeCard(props: IHomeCard) {
         if (onclick) onclick(key);
     };
     return (
-        <div className={styles.warp} onClick={handleClick}>
-            <Card {...arg} title={title}>
+        <div
+            className={styles.warp}
+            onClick={handleClick}
+            style={{
+                height: 230,
+            }}
+        >
+            <Card {...arg} title={title} bodyStyle={{ height: 'calc(100% - 140px)' }}>
                 {children}
             </Card>
         </div>

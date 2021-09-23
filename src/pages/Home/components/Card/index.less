@@ -1,8 +1,8 @@
 .warp {
-    height: 230px;
-    width: 250px;
     transition: transform 0.5s ease-out 0s;
     background: url('./bg.png') center/cover no-repeat;
+    width: 22%;
+    margin-bottom: 20px;
     &:hover {
         transform: translateY(-14px);
     }
@@ -24,7 +24,9 @@
         }
         .ant-card-body {
             padding: 0 24px;
-            height: calc(100% - 140px);
         }
     }
+    .forMd({
+        width: 48%;
+    });
 }

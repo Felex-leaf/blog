@@ -21,6 +21,7 @@ export default function index() {
         return () => {
             if (t) clearTimeout(t);
             if (i) clearInterval(i);
+            oldTime = 5;
         };
     }, []);
     return (

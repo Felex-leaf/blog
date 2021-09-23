@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo } from 'react';
+import { useRef, useEffect, useMemo, useState } from 'react';
 
 import snow from './snow.jpg';
 
@@ -11,36 +11,68 @@ interface Iparticle {
 
 const particles: Iparticle[] = [];
 let ctx: CanvasRenderingContext2D | null = null;
-const img = new Image();
+let t: NodeJS.Timeout | null = null;
+let img = new Image();
+let stop: number = 0;
 img.src = snow;
 
 export default function Snow() {
+    const [load, setLoad] = useState(false);
+    const [height, setHeight] = useState(document.body.offsetHeight - 60);
+    const [width, setWidth] = useState(document.body.offsetWidth);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const width = useMemo(() => document.body.offsetWidth, [document.body.offsetWidth]);
-    const height = useMemo(() => document.body.offsetHeight - 60, [document.body.offsetHeight]);
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         ctx = canvas.getContext('2d');
-        window.requestAnimationFrame(loop);
+        loop(height, width);
+        window.addEventListener('resize', () => {
+            if (t) clearTimeout(t);
+            t = setTimeout(() => {
+                if (!ctx) return;
+                const base64 = canvas.toDataURL();
+                const newWidth = document.body.offsetWidth;
+                const newHeight = document.body.offsetHeight - 60;
+
+                ctx.scale(width / newWidth, height / newHeight); //进行缩放，width/height是原canvas的大小
+                const img = new Image();
+
+                img.onload = function () {
+                    if (!ctx) return;
+                    ctx.drawImage(img, 0, 0, newWidth, newHeight);
+                    if (stop) cancelAnimationFrame(stop);
+                    loop(newHeight, newWidth);
+                    setLoad(!load);
+                    setHeight(newHeight);
+                    setWidth(newWidth);
+                };
+
+                img.src = base64;
+            }, 500);
+        });
+        return () => {
+            ctx = null;
+            if (t) clearTimeout(t);
+            if (stop) cancelAnimationFrame(stop);
+        };
     }, []);
-    function loop() {
-        create();
-        down();
-        draw();
-        window.requestAnimationFrame(loop);
+    function loop(height: number, width: number) {
+        create(width);
+        down(height, width);
+        draw(height);
+        stop = window.requestAnimationFrame(loop.bind(null, height, width));
     }
-    function create() {
-        if (particles.length < 200) {
+    function create(width: number) {
+        if (particles.length < 100) {
             particles.push({
                 x: Math.random() * width,
                 y: 0,
                 speed: 2 + Math.random() * 1,
-                radius: 3 + Math.random() * 4,
+                radius: 3 + Math.random() * 2,
             });
         }
     }
-    function down() {
+    function down(height: number, width: number) {
         particles.forEach((item) => {
             item.y += item.speed;
             if (item.y > height) {
@@ -51,9 +83,9 @@ export default function Snow() {
             }
         });
     }
-    function draw() {
+    function draw(height: number) {
         if (!ctx || !img) return;
-        ctx?.drawImage(img, 0, 0, width, height);
+        ctx?.drawImage(img, 0, 0, height * 2, height);
         particles.forEach((item) => {
             if (!ctx) return;
             ctx.beginPath();

@@ -17,12 +17,7 @@ interface IBlogLayout {
     location: Location;
 }
 
-export default function BlogLayout({
-    route: { routes },
-    history,
-    location,
-    children,
-}: IBlogLayout) {
+export default function BlogLayout({ route: { routes }, location, children }: IBlogLayout) {
     const [selectedKeys, setSelectedKeys] = useState('');
 
     useEffect(() => {
@@ -30,11 +25,12 @@ export default function BlogLayout({
     }, [location.pathname]);
 
     return (
-        <main className={styles.container}>
+        <main className={styles.container} style={{ paddingTop: 60 }}>
             <header className={styles.header}>
                 <div className={classNames(['typeArea', styles.warp])}>
                     <h1
                         className={classNames([styles.logo, 'scaleAnm'])}
+                        style={{ fontSize: 32 }}
                         onClick={jump.bind(null, PAGE_ENUM.HOME)}
                     >
                         Felex

@@ -20,3 +20,20 @@ export const jump = (path = '') => {
     }
     history.push(path);
 };
+
+export function initRem(): void {
+    const docEle = document.documentElement;
+    function setHtmlFontSize() {
+        let deviceWidth = docEle.clientWidth || window.innerWidth;
+        if (deviceWidth >= 1200) {
+            deviceWidth = 1200;
+        }
+        if (deviceWidth <= 320) {
+            deviceWidth = 320;
+        }
+        const fontSize = deviceWidth / 10;
+        docEle.style.fontSize = fontSize.toFixed(3) + 'px';
+    }
+    setHtmlFontSize();
+    window.addEventListener('resize', setHtmlFontSize);
+}

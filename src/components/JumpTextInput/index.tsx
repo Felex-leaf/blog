@@ -37,7 +37,7 @@ export default function JumpTextInput({
     );
     return (
         <div
-            className={classNames([styles.jumpTextInput, className])}
+            className={classNames([styles.dontRjumpTextInput, className])}
             style={{ borderBottomColor: theme }}
         >
             <Input

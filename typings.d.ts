@@ -10,3 +10,4 @@ declare module '*.svg' {
     export default url;
 }
 declare module 'react-lottie';
+declare module 'postcss-pxtorem';

@@ -2,17 +2,28 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    height: 120px;
-    font-size: 36px;
     color: @themeColor;
-    margin-bottom: 80px;
     position: relative;
+    margin-bottom: 80px;
     &::after {
         content: attr(data-content);
         position: absolute;
-        top: 40px;
         color: rgba(105, 140, 214, 0.1);
+    }
+}
+.dontRTitle {
+    font-size: 36px;
+    height: 120px;
+    &::after {
         font-size: 40px;
+        top: 40px;
         text-shadow: 0px 1px 4px rgba(105, 140, 214, 0.1);
     }
+    .forPad({
+        font-size: 26px;
+        &::after {
+            font-size: 30px;
+            top: 60px;
+        }
+    });
 }

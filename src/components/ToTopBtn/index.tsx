@@ -1,5 +1,6 @@
 import TweenOne from 'rc-tween-one';
 import { useState, useEffect } from 'react';
+
 import { IAnimObject } from 'rc-tween-one/typings/AnimObject';
 import styles from './index.less';
 
@@ -46,7 +47,7 @@ export default function ToTopBtn() {
             animation={animation}
             paused={paused}
             reverse={reverse}
-            className={styles.button}
+            className={styles.dontRButton}
             onClick={onClick}
         ></TweenOne>
     );

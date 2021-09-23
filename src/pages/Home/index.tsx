@@ -19,8 +19,6 @@ import banner from '@/assets/banner.png';
 interface IHome extends IProps {}
 
 export default function Home(props: IHome) {
-    const { history } = props;
-
     const scrollTo = (id?: string) => {
         if (!id) return;
         const target = document.getElementById(id);
@@ -32,11 +30,13 @@ export default function Home(props: IHome) {
 
     return (
         <div>
-            <div className={styles.bannerWrap}>
-                <div className={classNames([styles.banner, 'typeArea'])}>
+            <div className={styles.bannerWrap} style={{ marginBottom: '150px' }}>
+                <div className={classNames([styles.banner, styles.dontRbanner, 'typeArea'])}>
                     <div className={styles.titleWrap}>
-                        <h1 className={styles.title}>排行榜上榜动画，基于antd-motion实现。</h1>
-                        <h2>精美的动画让页面动起来</h2>
+                        <h1 className={classNames([styles.title, styles.dontRTitle])}>
+                            排行榜上榜动画，基于antd-motion实现。
+                        </h1>
+                        <h2 className={styles.dontRDescTitle}>精美的动画让页面动起来</h2>
                         <div>
                             <Button
                                 className={styles.button}
@@ -48,23 +48,24 @@ export default function Home(props: IHome) {
                     </div>
                     <img src={banner} alt="banner" />
                 </div>
-            </div>
-            <div className={classNames([styles.cardWrap, 'typeArea'])}>
-                <div>
-                    {data.map((item) => (
-                        <HomeCard
-                            headStyle={{
-                                color: '#162b6f',
-                                fontSize: 18,
-                            }}
-                            data={item}
-                            onclick={scrollTo}
-                        >
-                            {item.children}
-                        </HomeCard>
-                    ))}
+                <div className={classNames([styles.cardWrap, 'typeArea'])}>
+                    <div>
+                        {data.map((item) => (
+                            <HomeCard
+                                headStyle={{
+                                    color: '#162b6f',
+                                    fontSize: 18,
+                                }}
+                                data={item}
+                                onclick={scrollTo}
+                            >
+                                {item.children}
+                            </HomeCard>
+                        ))}
+                    </div>
                 </div>
             </div>
+
             <div className={classNames(['typeArea', styles.selfWrap])}>
                 <Title content="Personal Introduction">
                     <>
@@ -85,7 +86,7 @@ export default function Home(props: IHome) {
                     </>
                 </Title>
                 <Row>
-                    <Col span={10} className={styles.blogArticle}>
+                    <Col xs={24} sm={10} className={styles.blogArticle}>
                         <div
                             style={{
                                 display: 'flex',
@@ -99,7 +100,7 @@ export default function Home(props: IHome) {
                             <div className={styles.imgWrap}></div>
                             <div>
                                 <ArticleCard title="排行榜上榜动画">
-                                    <div>
+                                    <div className="ellipsis">
                                         基于react-lottie和antmotion结合实现的排行榜动画效果，点我进行查看！
                                     </div>
                                     <div style={{ marginTop: 10 }}>更多</div>
@@ -108,8 +109,11 @@ export default function Home(props: IHome) {
                         </div>
                     </Col>
                     <Col
-                        span={13}
-                        offset={1}
+                        xs={24}
+                        sm={{
+                            span: 13,
+                            offset: 1,
+                        }}
                         style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -117,18 +121,24 @@ export default function Home(props: IHome) {
                         }}
                     >
                         <ArticleCard title="星星动画" onClick={jump.bind(null, PAGE_ENUM.STAR)}>
-                            <div>基于react-lottie的实现的星星动画，点我进行查看！</div>
+                            <div className="ellipsis">
+                                基于react-lottie的实现的星星动画，点我进行查看！
+                            </div>
                             <div style={{ marginTop: 10 }}>更多</div>
                         </ArticleCard>
                         <ArticleCard title="3d展示" onClick={jump.bind(null, PAGE_ENUM.THREE)}>
-                            <div>基于Threejs实现的3d展示效果，点我进行查看！</div>
+                            <div className="ellipsis">
+                                基于Threejs实现的3d展示效果，点我进行查看！
+                            </div>
                             <div style={{ marginTop: 10 }}>更多</div>
                         </ArticleCard>
                         <ArticleCard
                             title="canvas下雪动画"
                             onClick={jump.bind(null, PAGE_ENUM.SNOW)}
                         >
-                            <div>基于原生canvas实现的下雪动画，点我进行查看！</div>
+                            <div className="ellipsis">
+                                基于原生canvas实现的下雪动画，点我进行查看！
+                            </div>
                             <div style={{ marginTop: 10 }}>更多</div>
                         </ArticleCard>
                     </Col>
@@ -147,6 +157,7 @@ export default function Home(props: IHome) {
                                     className={styles.footerDec}
                                     href="https://umijs.org/zh-CN"
                                     target="_blank"
+                                    rel="noreferrer"
                                 >
                                     umi
                                 </a>
@@ -154,6 +165,7 @@ export default function Home(props: IHome) {
                                     className={styles.footerDec}
                                     href="https://www.tslang.cn/"
                                     target="_blank"
+                                    rel="noreferrer"
                                 >
                                     typescript
                                 </a>
@@ -176,7 +188,7 @@ const data = [
             </>
         ),
         children: (
-            <div className={styles.cardIntroduce}>
+            <div className={styles.cardIntroduce} style={{ fontSize: 16 }}>
                 <div>熟悉C3动画</div>
                 <div>分享动画心得</div>
                 <div>动画组件展示</div>
@@ -192,7 +204,7 @@ const data = [
             </>
         ),
         children: (
-            <div className={styles.cardIntroduce}>
+            <div className={styles.cardIntroduce} style={{ fontSize: 16 }}>
                 <div>熟悉 React 框架</div>
                 <div>熟悉 Vue 框架</div>
                 <div>了解 小程序</div>
@@ -206,7 +218,7 @@ const data = [
                 <div className={styles.cardTitle}>装修中</div>
             </>
         ),
-        children: <div className={styles.cardIntroduce}></div>,
+        children: <div className={styles.cardIntroduce} style={{ fontSize: 16 }}></div>,
     },
     {
         title: (
@@ -215,6 +227,6 @@ const data = [
                 <div className={styles.cardTitle}>装修中</div>
             </>
         ),
-        children: <div className={styles.cardIntroduce}></div>,
+        children: <div className={styles.cardIntroduce} style={{ fontSize: 16 }}></div>,
     },
 ];
