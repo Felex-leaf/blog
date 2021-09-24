@@ -67,8 +67,8 @@ export default function Snow() {
             particles.push({
                 x: Math.random() * width,
                 y: 0,
-                speed: 2 + Math.random() * 1,
-                radius: 3 + Math.random() * 2,
+                speed: 1 + Math.random() * 4,
+                radius: 3 + Math.random() * 4,
             });
         }
     }
@@ -78,7 +78,7 @@ export default function Snow() {
             if (item.y > height) {
                 item.x = Math.random() * width;
                 item.y = 0;
-                item.speed = 2 + Math.random() * 1;
+                item.speed = 1 + Math.random() * 4;
                 item.radius = 3 + Math.random() * 4;
             }
         });

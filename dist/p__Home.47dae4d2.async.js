@@ -2414,7 +2414,7 @@
                 return Object(D['jsx'])('div', {
                     className: Ot.a.warp,
                     onClick: o,
-                    style: { height: 230 },
+                    style: { height: 230, borderRadius: 5 },
                     children: Object(D['jsx'])(
                         it,
                         Object(W['a'])(

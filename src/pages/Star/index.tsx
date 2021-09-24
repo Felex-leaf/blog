@@ -36,7 +36,7 @@ export default function Home() {
         }
     };
     return (
-        <div className={styles.container}>
+        <div className={styles.dontRcontainer}>
             <Box
                 id="box_container"
                 hasAnimation

@@ -24,6 +24,7 @@ export default function HomeCard(props: IHomeCard) {
             onClick={handleClick}
             style={{
                 height: 230,
+                borderRadius: 5,
             }}
         >
             <Card {...arg} title={title} bodyStyle={{ height: 'calc(100% - 140px)' }}>

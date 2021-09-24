@@ -1,20 +1,59 @@
-.header {
-    background-color: @themeBgColor;
+.dontRHeader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
-    backdrop-filter: blur(4px);
     z-index: 999;
+    height: 60px;
+    background-color: rgba(13, 90, 254, 0.7);
+    backdrop-filter: blur(4px);
+    .forPhone({
+        .warp {
+            justify-content: center;
+        }
+        .menuWrap {
+            display: none
+        }
+        .dontRMenuModal {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(13, 90, 254, 0.7);
+            overflow: hidden;
+            padding-top: 60px;
+            padding-left: 20px;
+            z-index: 1;
+            :global {
+                animation-name: fadeIn;
+                animation-play-state: running;
+                animation-duration: 0.2s;
+                animation-fill-mode: both;
+                animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+                .ant-menu-item-selected::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    transform: translateY(-50%);
+                    height: 40%;
+                    width: 2px;
+                    background-color: #fff;
+                }
+            }
+        }
+    });
     :global {
         .ant-menu {
             height: 60px;
-            background-color: @themeBgColor;
+            background-color: rgba(13, 90, 254, 0.1);
             width: 700px;
         }
         .ant-menu-item-selected {
-            background-color: @themeBgColor!important;
+            background-color: rgba(13, 90, 254, 0.3) !important;
             &::before {
                 content: '';
                 position: absolute;
@@ -30,6 +69,15 @@
             line-height: 60px;
         }
     }
+}
+.dontRhamburger {
+    display: none;
+    position: absolute;
+    right: 20px;
+    z-index: 2;
+    .forPhone({
+        display: block;
+    });
 }
 .warp {
     display: flex;
@@ -52,4 +100,10 @@
 
 .main {
     overflow: hidden;
+}
+
+.dontRDiv {
+    height: 60px;
+    width: 100%;
+    background-color: @themeBgColor;
 }

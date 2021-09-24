@@ -39,8 +39,8 @@
                         d.push({
                             x: Math.random() * e,
                             y: 0,
-                            speed: 2 + 1 * Math.random(),
-                            radius: 3 + 2 * Math.random(),
+                            speed: 1 + 4 * Math.random(),
+                            radius: 3 + 4 * Math.random(),
                         });
                 }
                 function x(e, t) {
@@ -49,7 +49,7 @@
                             n.y > e &&
                                 ((n.x = Math.random() * t),
                                 (n.y = 0),
-                                (n.speed = 2 + 1 * Math.random()),
+                                (n.speed = 1 + 4 * Math.random()),
                                 (n.radius = 3 + 4 * Math.random()));
                     });
                 }
