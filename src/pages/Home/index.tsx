@@ -6,6 +6,7 @@ import Button from '@/components/Button';
 import Title from '@/components/Title';
 import ArticleCard from '@/components/ArticleCard';
 import ToTopBtn from '@/components/ToTopBtn';
+import Footer from '@/components/Footer';
 import HomeCard from './components/Card';
 import AnimationIcon from './components/AnimationIcon';
 import EmptyIcon from './components/EmptyIcon';
@@ -144,36 +145,7 @@ export default function Home(props: IHome) {
                     </Col>
                 </Row>
             </div>
-            <div className={styles.footer}>
-                <div className="typeArea">
-                    <Row>
-                        <Col span={12} className={styles.footerLeft}>
-                            Designed by Jerry
-                        </Col>
-                        <Col span={12} className={styles.footerRight}>
-                            <div>
-                                <div className={styles.footerTitle}>项目依赖</div>
-                                <a
-                                    className={styles.footerDec}
-                                    href="https://umijs.org/zh-CN"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    umi
-                                </a>
-                                <a
-                                    className={styles.footerDec}
-                                    href="https://www.tslang.cn/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    typescript
-                                </a>
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-            </div>
+            <Footer />
             <ToTopBtn />
         </div>
     );

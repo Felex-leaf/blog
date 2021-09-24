@@ -1,4 +1,5 @@
 import { useEffect, useState, CSSProperties, MouseEvent } from 'react';
+import store from '@/store';
 import classNames from 'classnames';
 
 import storage from '@/utils/storage';
@@ -15,6 +16,7 @@ interface IThemeBtn {
 
 export default function ThemeBtn(props: IThemeBtn) {
     const { style, className, onClick } = props;
+    const { ThemeStore } = store;
     const [dark, setDark] = useState(false);
     const changeTheme = (dark: boolean) => {
         if (dark) {
@@ -26,6 +28,7 @@ export default function ThemeBtn(props: IThemeBtn) {
 
     const handleClick = (e: MouseEvent) => {
         storage.set('isDark', !dark);
+        ThemeStore.setIsDark(!dark);
         setDark(!dark);
         changeTheme(!dark);
         if (onClick) onClick(e);
@@ -35,6 +38,7 @@ export default function ThemeBtn(props: IThemeBtn) {
         const isDark = storage.get<boolean>('isDark') || false;
         setDark(isDark);
         changeTheme(isDark);
+        ThemeStore.setIsDark(isDark);
     }, []);
 
     return (

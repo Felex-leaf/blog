@@ -4,4 +4,5 @@ export const PAGE_ENUM = {
     STAR: '/star',
     THREE: '/3d',
     SNOW: '/snow',
+    HAMBURGER: '/hamburger',
 };

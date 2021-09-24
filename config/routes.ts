@@ -43,6 +43,11 @@ export default [
                 hidden: true,
             },
             {
+                path: '/hamburger',
+                component: '@/pages/Hamburger',
+                hidden: true,
+            },
+            {
                 path: '*',
                 redirect: '/404',
                 hidden: true,
