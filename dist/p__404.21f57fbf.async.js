@@ -5,7 +5,7 @@
             'use strict';
             t.r(n),
                 t.d(n, 'default', function () {
-                    return b;
+                    return f;
                 });
             var c = t('tJVT'),
                 a = t('nxO9'),
@@ -15,21 +15,21 @@
                 s = t.n(l),
                 o = t('nKUr'),
                 u = 5;
-            function b() {
+            function f() {
                 var e = null,
                     n = null,
                     t = Object(i['useState'])(5),
                     l = Object(c['a'])(t, 2),
-                    b = l[0],
-                    f = l[1];
+                    f = l[0],
+                    O = l[1];
                 return (
                     Object(i['useEffect'])(
                         () => (
                             (e = setTimeout(() => {
-                                Object(r['b'])(a['a'].HOME);
+                                Object(r['c'])(a['a'].HOME);
                             }, 5e3)),
                             (n = setInterval(() => {
-                                f(u > 0 ? u - 1 : 0), u--;
+                                O(u > 0 ? u - 1 : 0), u--;
                             }, 1e3)),
                             () => {
                                 e && clearTimeout(e), n && clearInterval(n), (u = 5);
@@ -42,10 +42,10 @@
                         children: Object(o['jsxs'])('h1', {
                             className: s.a.title,
                             children: [
-                                b,
+                                f,
                                 '\u79d2\u540e\uff0c',
                                 Object(o['jsx'])('a', {
-                                    onClick: r['b'].bind(null, a['a'].HOME),
+                                    onClick: r['c'].bind(null, a['a'].HOME),
                                     children: '\u8fd4\u56de\u9996\u9875',
                                 }),
                             ],
