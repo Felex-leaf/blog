@@ -1,5 +1,5 @@
 (window['webpackJsonp'] = window['webpackJsonp'] || []).push([
-    [10],
+    [13],
     {
         '+gPz': function (a) {
             a.exports = JSON.parse(
@@ -44,19 +44,29 @@
                 c = t.n(x),
                 l = t('nKUr');
             function k(a) {
-                var i = a.children,
-                    t = void 0 === i ? '\u786e\u8ba4' : i,
-                    r = a.style,
-                    s = a.className,
-                    x = Object(n['a'])(a, ['children', 'style', 'className']),
-                    k = Object(e['a'])({}, r);
-                return Object(l['jsx'])(
-                    'div',
-                    Object(e['a'])(
-                        Object(e['a'])({}, x),
-                        {},
-                        { className: o()([s, c.a.button]), style: k, children: t },
-                    ),
+                var i = Object(r['useRef'])(null),
+                    t = a.children,
+                    s = void 0 === t ? '\u786e\u8ba4' : t,
+                    x = a.style,
+                    k = a.className,
+                    m = a.theme,
+                    p = Object(n['a'])(a, ['children', 'style', 'className', 'theme']),
+                    d = Object(e['a'])({}, x);
+                return (
+                    Object(r['useEffect'])(() => {
+                        if (m) {
+                            var a = i.current;
+                            a && a.style.setProperty('--theme-color--', m);
+                        }
+                    }, [m]),
+                    Object(l['jsx'])(
+                        'div',
+                        Object(e['a'])(
+                            Object(e['a'])({}, p),
+                            {},
+                            { className: o()([k, c.a.button]), style: d, ref: i, children: s },
+                        ),
+                    )
                 );
             }
             i['a'] = Object(r['memo'])(k);
@@ -337,6 +347,23 @@
             }.call(this, t('IyRk')));
         },
         YBTB: function (a, i, t) {},
+        bT9E: function (a, i, t) {
+            'use strict';
+            t.d(i, 'a', function () {
+                return n;
+            });
+            var e = t('VTBJ');
+            function n(a, i) {
+                var t = Object(e['a'])({}, a);
+                return (
+                    Array.isArray(i) &&
+                        i.forEach(function (a) {
+                            delete t[a];
+                        }),
+                    t
+                );
+            }
+        },
         iXDD: function (a, i, t) {
             a.exports = {
                 dontRContainer: 'dontRContainer___2USmB',
@@ -356,7 +383,7 @@
             'use strict';
             t.r(i),
                 t.d(i, 'default', function () {
-                    return A;
+                    return _;
                 });
             var e = t('tJVT'),
                 n = t('q1tI'),
@@ -939,8 +966,8 @@
                 S = t('B3q3'),
                 B = t('iXDD'),
                 E = t.n(B),
-                _ = null;
-            function A() {
+                A = null;
+            function _() {
                 var a = Object(n['useState'])(!0),
                     i = Object(e['a'])(a, 2),
                     t = i[0],
@@ -950,10 +977,10 @@
                     x = o[0],
                     c = o[1],
                     l = () => {
-                        _ ||
+                        A ||
                             (r(!1),
-                            (_ = setTimeout(() => {
-                                r(!0), (_ = null);
+                            (A = setTimeout(() => {
+                                r(!0), (A = null);
                             }, 200)));
                     },
                     k = () => {
@@ -1078,10 +1105,10 @@
                 function E() {
                     void 0 !== p && clearTimeout(p), (y = 0), (c = d = l = p = void 0);
                 }
-                function _() {
+                function A() {
                     return void 0 === p ? m : B(n());
                 }
-                function A() {
+                function _() {
                     var a = n(),
                         t = j(a);
                     if (((c = arguments), (l = this), (d = a), t)) {
@@ -1097,9 +1124,9 @@
                         (h = 'maxWait' in t),
                         (k = h ? o(r(t.maxWait) || 0, i) : k),
                         (f = 'trailing' in t ? !!t.trailing : f)),
-                    (A.cancel = E),
-                    (A.flush = _),
-                    A
+                    (_.cancel = E),
+                    (_.flush = A),
+                    _
                 );
             }
             a.exports = c;
