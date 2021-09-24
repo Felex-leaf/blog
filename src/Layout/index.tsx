@@ -1,10 +1,11 @@
 import { Menu } from 'antd';
 import classNames from 'classnames';
 import { History, Location } from 'umi';
-import { useState, useEffect, UIEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { Route } from '@ant-design/pro-layout/lib/typings';
 
 import Hamburger from '@/components/Hamburger';
+import ThemeBtn from '@/components/ThemeBtn';
 import { PAGE_ENUM } from '@/configs';
 import { jump } from '@/utils';
 
@@ -32,13 +33,12 @@ export default function BlogLayout({ route: { routes }, location, children }: IB
         else document.body.style.overflow = 'auto';
     };
     const handleJump = (path: string | undefined) => {
-        jump(path);
         if (isActive) {
             setIsActive(false);
             document.body.style.overflow = 'auto';
         }
+        jump(path);
     };
-    //{isActive ? 'inline' : 'horizontal'}
     return (
         <main className={styles.container}>
             <header className={styles.dontRHeader}>
@@ -58,7 +58,11 @@ export default function BlogLayout({ route: { routes }, location, children }: IB
                             styles.menuWrap,
                         ])}
                     >
-                        <Menu theme="dark" mode="horizontal" selectedKeys={[selectedKeys]}>
+                        <Menu
+                            theme="dark"
+                            mode={isActive ? 'inline' : 'horizontal'}
+                            selectedKeys={[selectedKeys]}
+                        >
                             {routes &&
                                 routes.map(
                                     (item: Route) =>
@@ -72,6 +76,7 @@ export default function BlogLayout({ route: { routes }, location, children }: IB
                                         ),
                                 )}
                         </Menu>
+                        <ThemeBtn className={styles.dontRthemeBtn} />
                     </div>
                     <Hamburger
                         className={styles.dontRhamburger}

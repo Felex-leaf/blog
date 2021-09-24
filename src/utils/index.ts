@@ -37,3 +37,43 @@ export function initRem(): void {
     setHtmlFontSize();
     window.addEventListener('resize', setHtmlFontSize);
 }
+
+type TYPE =
+    | 'Number'
+    | 'BigInt'
+    | 'String'
+    | 'Boolean'
+    | 'Undefined'
+    | 'Null'
+    | 'Object'
+    | 'Array'
+    | 'Function'
+    | 'Symbol'
+    | 'Math'
+    | 'JSON'
+    | 'Date'
+    | 'RegExp'
+    | 'Error'
+    | 'Window'
+    | 'HTMLDocument';
+type data =
+    | Number
+    | BigInt
+    | String
+    | Boolean
+    | undefined
+    | null
+    | Object
+    | Array<any>
+    | Function
+    | Symbol
+    | Math
+    | JSON
+    | Date
+    | RegExp
+    | Error
+    | Window
+    | HTMLDocument;
+export function isType(data: data, type: TYPE): boolean {
+    return Object.prototype.toString.call(data) === `[object ${type}]`;
+}

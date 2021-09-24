@@ -18,6 +18,11 @@ export default [
                 name: '首页',
             },
             {
+                path: '/article',
+                component: '@/pages/Blog',
+                name: '博客',
+            },
+            {
                 path: '/ranking',
                 component: '@/pages/RankingList',
                 hidden: true,

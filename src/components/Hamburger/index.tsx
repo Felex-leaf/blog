@@ -1,5 +1,6 @@
+import { isType } from '@/utils';
 import classNames from 'classnames';
-import { useState, CSSProperties } from 'react';
+import { useState, CSSProperties, useEffect } from 'react';
 import styles from './index.less';
 
 interface IHamburger {
@@ -13,6 +14,9 @@ interface IHamburger {
 export default function Hamburger(props: IHamburger) {
     const [isActive, setIsActive] = useState(false);
     const { onClick, style, type = 1, className, isActive: active } = props;
+    useEffect(() => {
+        if (isType(active, 'Boolean')) setIsActive(active as boolean);
+    }, [active]);
     const handleClick = () => {
         setIsActive(!isActive);
         if (onClick) onClick(!isActive);

@@ -1,6 +1,18 @@
 :root {
     --theme-bgColor: #0d5afe;
+    --theme-bgColorA: rgba(13, 90, 254, 0.7);
+    --theme-bgColorH: #64b5ff;
+    --theme-bgColorW: #fff;
     --theme-Color: #333;
+    --theme-ColorA: rgba(0, 0, 0, 0.6);
+}
+.dark:root {
+    --theme-bgColor: #000;
+    --theme-bgColorA: rgba(0, 0, 0, 0.7);
+    --theme-bgColorH: #333;
+    --theme-bgColorW: #222;
+    --theme-Color: #fff;
+    --theme-ColorA: rgba(255, 255, 255, 0.6);
 }
 
 .typeArea {
@@ -16,6 +28,14 @@
     -webkit-box-orient: vertical;
 }
 
+.fadeIn {
+    animation: fadeIn 0.4s linear;
+}
+
+.swing {
+    animation: swing 0.4s linear;
+}
+
 @keyframes anmScale {
     0% {
         transform: scale(1);
@@ -29,23 +49,18 @@
 }
 
 @keyframes swing {
-    10% {
+    0% {
         transform: rotate(15deg);
     }
 
-    20% {
+    30% {
         transform: rotate(-10deg);
     }
 
-    30% {
-        transform: rotate(5deg);
+    60% {
+        transform: rotate(15deg);
     }
 
-    40% {
-        transform: rotate(-5deg);
-    }
-
-    50%,
     100% {
         transform: rotate(0deg);
     }
@@ -57,6 +72,15 @@
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
 
