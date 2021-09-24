@@ -44,7 +44,10 @@
             );
         },
         ZLfs: function (a, t, e) {
-            a.exports = { container: 'container___1IEpQ', dontRInput: 'dontRInput___6T3gP' };
+            a.exports = {
+                dontRcontainer: 'dontRcontainer___3qWS0',
+                dontRInput: 'dontRInput___6T3gP',
+            };
         },
         ch0H: function (a, t, e) {
             'use strict';
@@ -503,7 +506,7 @@
                         t <= 10 && t >= 1 ? (h(t), w()) : h(void 0);
                     };
                 return Object(p['jsxs'])('div', {
-                    className: u.a.container,
+                    className: u.a.dontRcontainer,
                     children: [
                         Object(p['jsx'])(m, {
                             id: 'box_container',
