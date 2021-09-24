@@ -1,5 +1,5 @@
 (window['webpackJsonp'] = window['webpackJsonp'] || []).push([
-    [12],
+    [15],
     {
         '7WsZ': function (a, t, e) {
             a.exports = {
@@ -18,19 +18,29 @@
                 d = e.n(l),
                 x = e('nKUr');
             function p(a) {
-                var t = a.children,
-                    e = void 0 === t ? '\u786e\u8ba4' : t,
-                    n = a.style,
-                    r = a.className,
-                    l = Object(i['a'])(a, ['children', 'style', 'className']),
-                    p = Object(s['a'])({}, n);
-                return Object(x['jsx'])(
-                    'div',
-                    Object(s['a'])(
-                        Object(s['a'])({}, l),
-                        {},
-                        { className: o()([r, d.a.button]), style: p, children: e },
-                    ),
+                var t = Object(n['useRef'])(null),
+                    e = a.children,
+                    r = void 0 === e ? '\u786e\u8ba4' : e,
+                    l = a.style,
+                    p = a.className,
+                    m = a.theme,
+                    c = Object(i['a'])(a, ['children', 'style', 'className', 'theme']),
+                    h = Object(s['a'])({}, l);
+                return (
+                    Object(n['useEffect'])(() => {
+                        if (m) {
+                            var a = t.current;
+                            a && a.style.setProperty('--theme-color--', m);
+                        }
+                    }, [m]),
+                    Object(x['jsx'])(
+                        'div',
+                        Object(s['a'])(
+                            Object(s['a'])({}, c),
+                            {},
+                            { className: o()([p, d.a.button]), style: h, ref: t, children: r },
+                        ),
+                    )
                 );
             }
             t['a'] = Object(n['memo'])(p);
@@ -76,7 +86,7 @@
                         x = a.whiteShine,
                         m = a.yellowShine,
                         c = a.isShowBox,
-                        k = () => {
+                        h = () => {
                             s || (t && t(n || ''), e && e());
                         },
                         y = { width: '40px', height: '40px' };
@@ -89,7 +99,7 @@
                                 style: i,
                                 children: [
                                     Object(p['jsx'])('span', {
-                                        onClick: k,
+                                        onClick: h,
                                         className: l()([
                                             s ? d['open_box'] : d['close_box'],
                                             { [d['hasAnimation']]: o },
@@ -109,9 +119,9 @@
                     });
                 },
                 c = e('9og8'),
-                k = e('WmNS'),
-                y = e.n(k);
-            function h(a) {
+                h = e('WmNS'),
+                y = e.n(h);
+            function k(a) {
                 var t = a.onClick,
                     e = a.integralNum,
                     s = a.onStarAnimation,
@@ -185,12 +195,12 @@
                                                 ', ' +
                                                 m +
                                                 ')',
-                                            k = 'translateY(' + p + 'px)';
+                                            h = 'translateY(' + p + 'px)';
                                         ((t) => {
                                             this.t.push(
                                                 setTimeout(() => {
                                                     (e[t].style.transform = c),
-                                                        (s[t].style.transform = k),
+                                                        (s[t].style.transform = h),
                                                         10 === a && 0 === t
                                                             ? (this.audio[0].load(),
                                                               this.audio[0].play())
@@ -343,7 +353,7 @@
                                     className: x.a.star_modal,
                                     onClick: this.handlerHideModal,
                                     children: [
-                                        Object(p['jsx'])(h, {
+                                        Object(p['jsx'])(k, {
                                             integralNum: i,
                                             onStarAnimation: e || !1,
                                             style: { cursor: 'default' },
@@ -434,9 +444,9 @@
                     x = a.positiveControl,
                     m = Object(n['useState'])(),
                     c = Object(i['a'])(m, 2),
-                    k = c[0],
+                    h = c[0],
                     y = c[1],
-                    h = (a) => {
+                    k = (a) => {
                         e && e(a.target.value), y(a.target.value);
                     },
                     A = Object(n['useMemo'])(
@@ -460,11 +470,11 @@
                     style: { borderBottomColor: d },
                     children: [
                         Object(p['jsx'])(q['a'], {
-                            value: x || (null !== t && void 0 !== t) ? t : k,
-                            onChange: h,
+                            value: x || (null !== t && void 0 !== t) ? t : h,
+                            onChange: k,
                             bordered: !1,
                         }),
-                        !k &&
+                        !h &&
                             !t &&
                             Object(p['jsx'])('div', {
                                 className: B.a.placeholder,
@@ -484,9 +494,9 @@
                     d = l[0],
                     x = l[1],
                     c = Object(n['useState'])(10),
-                    k = Object(i['a'])(c, 2),
-                    y = k[0],
-                    h = k[1],
+                    h = Object(i['a'])(c, 2),
+                    y = h[0],
+                    k = h[1],
                     A = () => {
                         if (!y) return s['default'].warning('\u8bf7\u8f93\u5165\u661f\u661f\u6570');
                         r(!0),
@@ -503,7 +513,7 @@
                     },
                     g = (a) => {
                         var t = parseInt(String(a));
-                        t <= 10 && t >= 1 ? (h(t), w()) : h(void 0);
+                        t <= 10 && t >= 1 ? (k(t), w()) : k(void 0);
                     };
                 return Object(p['jsxs'])('div', {
                     className: u.a.dontRcontainer,
