@@ -13,6 +13,7 @@ const SunSvg = (props: any) => {
             height={height}
         >
             <path
+                id="path1"
                 d="M304.5 691.8c0-145.3 117.8-263 263-263s263 117.8 263 263"
                 fill="#FDDA09"
                 p-id="2589"

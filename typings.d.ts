@@ -11,3 +11,4 @@ declare module '*.svg' {
 }
 declare module 'react-lottie';
 declare module 'postcss-pxtorem';
+declare module 'rc-tween-one/lib/plugin/SvgMorphPlugin';
