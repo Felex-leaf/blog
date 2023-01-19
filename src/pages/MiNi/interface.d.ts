@@ -1,7 +1,5 @@
-export interface IAllTexture {
-    [key: string]: THREE.Texture;
-}
+export type IAllTexture = Record<string, THREE.Texture>;
 
 export interface IMesh<T> extends THREE.Object3D {
-    material?: T;
+  material?: T;
 }

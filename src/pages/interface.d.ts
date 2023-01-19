@@ -1,11 +1,11 @@
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import type { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 export interface IPosition {
-    x: number;
-    y: number;
-    z: number;
+  x: number;
+  y: number;
+  z: number;
 }
 
 export interface IOrbitControls extends OrbitControls {
-    target0?: IPosition;
+  target0?: IPosition;
 }
