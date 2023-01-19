@@ -1,14 +1,15 @@
-import { Card, CardProps } from 'antd';
+import type { CardProps } from 'antd';
+import { Card } from 'antd';
 
 import styles from './index.less';
 
-interface ArticleCard extends CardProps {}
+type ArticleCard = CardProps;
 
 export default function ArticleCard(props: ArticleCard) {
-    const { ...arg } = props;
-    return (
-        <div className={styles.articleCard}>
-            <Card {...arg} bordered={false} />
-        </div>
-    );
+  const { ...arg } = props;
+  return (
+    <div className={styles.articleCard}>
+      <Card {...arg} bordered={false} />
+    </div>
+  );
 }

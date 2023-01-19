@@ -1,6 +1,6 @@
-import { History, Location } from 'umi';
+import type { History, Location } from 'umi';
 
 export interface IProps {
-    history: History;
-    location: Location;
+  history: History;
+  location: Location;
 }
