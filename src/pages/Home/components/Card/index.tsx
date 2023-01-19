@@ -1,5 +1,6 @@
 import type { CardProps } from 'antd';
 import { Card } from 'antd';
+import React from 'react';
 
 import styles from './index.less';
 

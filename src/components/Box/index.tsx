@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import type { CSSProperties } from 'react';
+import React from 'react';
 import * as styles from '../index.less';
 
 interface IBox {
@@ -15,7 +16,7 @@ interface IBox {
   yellowShine?: boolean;
 }
 
-export default function (props: IBox) {
+export default function Box(props: IBox) {
   const {
     onClick,
     setBoxState,

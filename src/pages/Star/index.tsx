@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import AwardModel from '@/components/AwardModel';
 import Box from '@/components/Box';
@@ -13,7 +13,10 @@ export default function Home() {
   const [onStarAnimation, setOnStarAnimation] = useState(false);
   const [integralNum, setIntegralNum] = useState<number | undefined>(10);
   const handleClick = () => {
-    if (!integralNum) return message.warning('请输入星星数');
+    if (!integralNum) {
+      message.warning('请输入星星数');
+      return;
+    }
     setIsOpenBox(true);
     setOnStarAnimation(true);
     setTimeout(() => {
@@ -27,7 +30,7 @@ export default function Home() {
     setIsOpenBox(false);
   };
   const change = (e: string | number) => {
-    const num = parseInt(String(e));
+    const num = parseInt(String(e), 10);
     if (num <= 10 && num >= 1) {
       setIntegralNum(num);
       reset();

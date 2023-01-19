@@ -1,6 +1,6 @@
 import { Input } from 'antd';
 import type { ChangeEvent } from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import Hamburger from '@/components/Hamburger';
 

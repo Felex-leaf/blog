@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import type { CSSProperties, MouseEvent } from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import store from '@/store';
 
 import storage from '@/utils/storage';
@@ -19,8 +19,8 @@ export default function ThemeBtn(props: IThemeBtn) {
   const { style, className, onClick } = props;
   const { ThemeStore } = store;
   const [dark, setDark] = useState(false);
-  const changeTheme = (dark: boolean) => {
-    if (dark) {
+  const changeTheme = (d: boolean) => {
+    if (d) {
       document.documentElement.setAttribute('class', 'dark');
     } else {
       document.documentElement.setAttribute('class', '');

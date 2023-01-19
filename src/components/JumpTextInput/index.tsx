@@ -1,7 +1,7 @@
 import { Input } from 'antd';
 import classNames from 'classnames';
 import type { ChangeEvent } from 'react';
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import styles from './index.less';
 

@@ -1,8 +1,7 @@
-import type { CSSProperties, MouseEvent } from 'react';
-
+import React, { CSSProperties, MouseEvent } from 'react';
 import classNames from 'classnames';
-import Button from '@/components/Button';
 
+import Button from '@/components/Button';
 import { jump } from '@/utils';
 import styles from './index.less';
 

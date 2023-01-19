@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const isTsProject = fs.existsSync(path.join(process.cwd() || '.', './tsconfig.json'));
+const isTsProject = fs.existsSync(
+  path.join(process.cwd() || '.', './tsconfig.json'),
+);
 
 module.exports = {
   parserOptions: {
@@ -9,7 +11,11 @@ module.exports = {
       jsx: true,
     },
     babelOptions: {
-      presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+      presets: [
+        '@babel/preset-env',
+        '@babel/preset-react',
+        '@babel/preset-typescript',
+      ],
       plugins: [
         ['@babel/plugin-proposal-decorators', { legacy: true }],
         ['@babel/plugin-proposal-class-properties', { loose: true }],

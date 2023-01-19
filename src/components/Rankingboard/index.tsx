@@ -1,23 +1,14 @@
-/*
- * @Author: zhengguolei
- * @Date: 2021-04-19
- * @LastEditTime:
- * @LastEditors: zhengguolei
- * @Descripttion:
- * @FilePath: /fe_ilearning_student/src/components/KPointCard/Layouts/LikersModal.js
- */
 import type { CSSProperties } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './index.less';
 import RankingList from './RankingList';
 
 interface IRankingboard {
-  onRankingCallback?: () => void;
   style?: CSSProperties;
 }
 
 const Rankingboard = (props: IRankingboard) => {
-  const { onRankingCallback, style } = props;
+  const { style } = props;
   const selfInfo = {
     orgId: null,
     userId: 56036,

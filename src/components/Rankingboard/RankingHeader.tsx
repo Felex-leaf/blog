@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import type { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 
 import styles from './index.less';
 

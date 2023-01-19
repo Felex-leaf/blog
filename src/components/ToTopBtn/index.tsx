@@ -1,5 +1,5 @@
 import TweenOne from 'rc-tween-one';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import type { IAnimObject } from 'rc-tween-one/typings/AnimObject';
 import styles from './index.less';

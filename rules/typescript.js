@@ -6,7 +6,10 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
 
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
+    ],
 
     semi: 'off',
     'babel/semi': 'off',
@@ -81,7 +84,10 @@ module.exports = {
     ],
 
     'no-unused-expressions': 'off',
-    '@typescript-eslint/no-unused-expressions': ['error', { allowTernary: true, allowShortCircuit: true }],
+    '@typescript-eslint/no-unused-expressions': [
+      'error',
+      { allowTernary: true, allowShortCircuit: true },
+    ],
 
     indent: 'off',
     '@typescript-eslint/indent': 'off', // 改为由 prettier接管

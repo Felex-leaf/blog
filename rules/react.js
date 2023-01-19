@@ -3,7 +3,10 @@ module.exports = {
   rules: {
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      'error',
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
     'react/no-array-index-key': 'warn',
     'react/sort-comp': 'off', // 要求过于严格，带来负担 不做限制
     'react/destructuring-assignment': [

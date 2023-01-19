@@ -11,8 +11,6 @@ import { jump } from '@/utils';
 
 import styles from './index.less';
 
-const s = '';
-
 interface IBlogLayout {
   children: JSX.Element;
   routes: Route[];
@@ -33,9 +31,9 @@ export default function BlogLayout({
     setSelectedKeys(location.pathname);
   }, [location.pathname]);
 
-  const handleClick = (isActive: boolean) => {
-    setIsActive(isActive);
-    if (isActive) document.body.style.overflow = 'hidden';
+  const handleClick = (_isActive: boolean) => {
+    setIsActive(_isActive);
+    if (_isActive) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'auto';
   };
   const handleJump = (path: string | undefined) => {
@@ -69,18 +67,19 @@ export default function BlogLayout({
               mode={isActive ? 'inline' : 'horizontal'}
               selectedKeys={[selectedKeys]}
             >
-              {routes &&
-                routes.map(
+              {
+                routes?.map(
                   (item: Route) =>
                     !item.hidden && (
                       <Menu.Item
                         key={item.path}
-                        onClick={handleJump.bind(null, item.path)}
+                        onClick={() => handleJump(item.path)}
                       >
                         {item.name}
                       </Menu.Item>
                     ),
-                )}
+                )
+}
             </Menu>
             <ThemeBtn className={styles.dontRthemeBtn} />
           </div>

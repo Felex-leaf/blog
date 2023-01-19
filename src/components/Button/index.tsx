@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import type { CSSProperties, MouseEvent } from 'react';
-import { memo, useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 
 import styles from './index.less';
 

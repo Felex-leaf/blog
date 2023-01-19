@@ -1,10 +1,8 @@
 import { Spin } from 'antd';
 import classNames from 'classnames';
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ListAnimation from '@/components/ListAnimation';
 import styles from './index.less';
-
-const currentTab = 'friend';
 
 const RankingList = () => {
   const [rankingHeight, setRankingHeight] = useState(0);

@@ -142,9 +142,14 @@ export default class ListAnimation extends Component<IListAnimationProps> {
             onComplete: () => {
               const finial = () => {
                 const finialAnimation = animation.map((it, index) =>
-                  index === current
-                    ? { top: to * 60, width: '100%', duration: 0, zIndex: '0' }
-                    : it,
+                  (index === current
+                    ? {
+                        top: to * 60,
+                        width: '100%',
+                        duration: 0,
+                        zIndex: '0',
+                      }
+                    : it),
                 );
                 this.setState({
                   animation: finialAnimation,
@@ -152,7 +157,7 @@ export default class ListAnimation extends Component<IListAnimationProps> {
                 });
               };
               const newAnimation = animation.map((it, index) =>
-                index === current
+                (index === current
                   ? {
                       scale: 1,
                       boxShadow: '0 0 0',
@@ -160,7 +165,7 @@ export default class ListAnimation extends Component<IListAnimationProps> {
                       borderBottom: '1px solid #ddd',
                       onComplete: finial,
                     }
-                  : it,
+                  : it),
               );
               this.setState(
                 {
@@ -198,6 +203,7 @@ export default class ListAnimation extends Component<IListAnimationProps> {
     ) {
       return true;
     }
+    return undefined;
   }
 
   toArrayChildren = (children: JSX.Element[]) => {
@@ -234,9 +240,6 @@ export default class ListAnimation extends Component<IListAnimationProps> {
         preserveAspectRatio: 'xMidYMid slice',
       },
     };
-    const width = document.body.clientWidth;
-    const height = document.body.clientHeight;
-    const left = (width - 768) / 2;
     return (
       <>
         <div

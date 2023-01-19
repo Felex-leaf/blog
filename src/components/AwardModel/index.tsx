@@ -27,13 +27,14 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
   t: (NodeJS.Timer | number)[] = [];
 
   async componentDidMount() {
+    const { integralNum } = this.props;
     this.setState({
       userIntegralNum: 10,
     });
-    const num = this.props.integralNum === 10 ? 1 : this.props.integralNum;
+    const num = integralNum === 10 ? 1 : integralNum;
     const arr = Array(num).fill(0);
     this.audio = arr.map(() => new Audio());
-    if (this.props.integralNum === 10) {
+    if (integralNum === 10) {
       this.audio[0].src =
         'https://static-website-alioss.ilearnta.com/taskCard/644cb66f99880d05b3540c624bdb0d0b.mp3';
     } else {
@@ -46,7 +47,7 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
     this.setState({
       showStar: true,
     });
-    if (this.props.integralNum < 10) {
+    if (integralNum < 10) {
       this.getOneStarPosition();
     }
     this.t.push(
@@ -129,12 +130,13 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
     });
   };
 
-  componentDidUpdate(prevProps: any) {
+  componentDidUpdate() {
+    const { onStarAnimation, integralNum } = this.props;
+    const { add, userIntegralNum } = this.state;
     if (
-      !this.state.add &&
-      this.props.onStarAnimation &&
-      this.props.onStarAnimation &&
-      this.props.integralNum
+      !add &&
+      onStarAnimation &&
+      integralNum
     ) {
       this.setState({
         add: true,
@@ -142,23 +144,23 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
       const addIntegral = (i: number) => {
         this.t.push(
           setTimeout(() => {
-            if (i === this.props.integralNum + 1) {
+            if (i === integralNum + 1) {
               this.setState({
                 showStar: false,
               });
               this.setState({
                 add: false,
               });
-            } else if (i < this.props.integralNum) {
+            } else if (i < integralNum) {
               this.setState({
-                userIntegralNum: this.state.userIntegralNum + 1,
+                userIntegralNum: userIntegralNum + 1,
               });
             }
           }, 150 * i),
         );
       };
       setTimeout(() => {
-        for (let i = 0; i <= this.props.integralNum + 1; i++) {
+        for (let i = 0; i <= integralNum + 1; i++) {
           addIntegral(i);
         }
       }, 2000);

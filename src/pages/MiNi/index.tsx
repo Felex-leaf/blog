@@ -1,6 +1,6 @@
 import TWEEN from '@tweenjs/tween.js';
 import { Spin } from 'antd';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -53,7 +53,7 @@ const moveCamera = (
   // 动画完成后的执行函数
   tween.onComplete(() => {
     if (controls) controls.enabled = true;
-    callback && callback();
+    callback?.();
   });
 
   tween.easing(TWEEN.Easing.Cubic.InOut);
@@ -66,7 +66,14 @@ const moveCamera = (
   animate();
 };
 
-const poiPosArray = [{ x: 0.8, y: 1, z: 0.4, frame: 1 }];
+const poiPosArray = [
+  {
+    x: 0.8,
+    y: 1,
+    z: 0.4,
+    frame: 1,
+  },
+];
 
 const poiObjects: THREE.Sprite[] = [];
 let oldP: IPosition | undefined = {
@@ -83,148 +90,10 @@ let oldT: IPosition | undefined = {
 export default function IndexPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState(true);
-  const init = () => {
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(
-      90,
-      document.body.clientWidth / document.body.clientHeight,
-      0.1,
-      100,
-    );
-    renderer = new THREE.WebGLRenderer();
-    textureLoader = new THREE.TextureLoader();
-    camera.position.set(0, 0, 3);
-    renderer.setSize(document.body.clientWidth, document.body.clientHeight);
-    const container = containerRef.current;
-    if (container) container.appendChild(renderer.domElement);
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.addEventListener('change', () => {
-      oldP = camera?.position;
-      oldT = controls?.target;
-    });
-    loadModel();
-    loop();
-    addLight();
-    setupInfoPoint();
-  };
-
-  const addLight = () => {
-    if (!scene) return;
-    const ambientLight = new THREE.AmbientLight(0xd5d5d5);
-    ambientLight.intensity = 1.2;
-    scene.add(ambientLight);
-
-    const bottomRightDirLight = new THREE.DirectionalLight();
-    bottomRightDirLight.position.x = 5;
-    bottomRightDirLight.position.y = 3;
-    bottomRightDirLight.position.z = -5;
-    bottomRightDirLight.intensity = 0.8;
-
-    // const helper=new THREE.DirectionalLightHelper(bottomRightDirLight,1);
-    // scene.add( helper );
-    scene.add(bottomRightDirLight);
-
-    const frontDirLight = new THREE.DirectionalLight(0xffffff);
-
-    frontDirLight.position.x = -5;
-    frontDirLight.position.y = 3;
-    frontDirLight.position.z = 5;
-    frontDirLight.intensity = 0.8;
-    // directionalLight.castShadow=true;
-
-    // const helper=new THREE.DirectionalLightHelper(frontDirLight,1);
-    // scene.add( helper );
-    scene.add(frontDirLight);
-    // 车子正前上方斜45度的灯结束
-  };
-
-  const setupInfoPoint = () => {
-    if (!scene) return;
-    const pointTexture = new THREE.TextureLoader().load('car3d/point.png');
-
-    const group = new THREE.Group();
-    const materialC = new THREE.SpriteMaterial({
-      map: pointTexture,
-      color: 0xffffff,
-      fog: false,
-    });
-    for (let a = 0; a < poiPosArray.length; a++) {
-      const { x } = poiPosArray[a];
-      const y = poiPosArray[a].y - 0.5;
-      const { z } = poiPosArray[a];
-
-      const sprite = new THREE.Sprite(materialC);
-      sprite.scale.set(0.15, 0.15, 1);
-      sprite.position.set(x, y, z);
-      group.add(sprite);
-
-      poiObjects.push(sprite);
-    }
-    scene.add(group);
-
-    document.body.addEventListener('click', (event) => {
-      event.preventDefault();
-      if (!camera) return;
-      const raycaster = new THREE.Raycaster();
-      const mouse = new THREE.Vector2();
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-      raycaster.setFromCamera(mouse, camera);
-
-      const intersects = raycaster.intersectObjects(poiObjects);
-      if (intersects.length > 0) {
-        const {
-          point: { x, y, z },
-        } = intersects[0];
-        if (oldP && oldT) {
-          moveCamera(
-            oldP,
-            oldT,
-            {
-              x: x + 0.1,
-              y: y - 0.1,
-              z: z - 0.4,
-            },
-            {
-              x: 1,
-              y: 0.5,
-              z: 1.5,
-            },
-          );
-        }
-      }
-    });
-  };
-
   const loop = () => {
     if (!renderer || !scene || !camera) return;
     requestAnimationFrame(loop);
     renderer.render(scene, camera);
-  };
-
-  const loadModel = () => {
-    const loader = new GLTFLoader();
-    loader.load(
-      'car3d/model.gltf',
-      (gltf) => {
-        if (scene) scene.add(gltf.scene);
-        const model: THREE.Object3D[] = gltf.scene.children[0].children;
-        loadAllTexture(model);
-      },
-      (xhr) => {
-        // 侦听模型加载进度
-        console.log(`${(xhr.loaded / 13970297) * 100}% loaded`);
-        if (xhr.loaded >= 13970297) {
-          console.log('end');
-        }
-      },
-      (error) => {
-        // 加载出错时的回调
-        console.log(error);
-        console.log('An error happened');
-      },
-    );
   };
 
   const loadAllTexture = (model: THREE.Object3D[]) => {
@@ -261,7 +130,7 @@ export default function IndexPage() {
       textureLoader?.load(`car3d/textures/${textureName}.jpg`, (texture) => {
         if (loadIndex < textures.length - 1) {
           allTexture[textureName] = texture;
-          loadIndex++;
+          loadIndex += 1;
           loadNextTexture();
         } else {
           for (const key in model) {
@@ -413,6 +282,7 @@ export default function IndexPage() {
                   modelItem.material.normalMap = allTexture.chejia_nor;
                   modelItem.material.aoMap = allTexture.chejia_occ;
                   break;
+                default:
               }
             }
           }
@@ -420,6 +290,144 @@ export default function IndexPage() {
       });
     };
     loadNextTexture();
+  };
+
+  const addLight = () => {
+    if (!scene) return;
+    const ambientLight = new THREE.AmbientLight(0xd5d5d5);
+    ambientLight.intensity = 1.2;
+    scene.add(ambientLight);
+
+    const bottomRightDirLight = new THREE.DirectionalLight();
+    bottomRightDirLight.position.x = 5;
+    bottomRightDirLight.position.y = 3;
+    bottomRightDirLight.position.z = -5;
+    bottomRightDirLight.intensity = 0.8;
+
+    // const helper=new THREE.DirectionalLightHelper(bottomRightDirLight,1);
+    // scene.add( helper );
+    scene.add(bottomRightDirLight);
+
+    const frontDirLight = new THREE.DirectionalLight(0xffffff);
+
+    frontDirLight.position.x = -5;
+    frontDirLight.position.y = 3;
+    frontDirLight.position.z = 5;
+    frontDirLight.intensity = 0.8;
+    // directionalLight.castShadow=true;
+
+    // const helper=new THREE.DirectionalLightHelper(frontDirLight,1);
+    // scene.add( helper );
+    scene.add(frontDirLight);
+    // 车子正前上方斜45度的灯结束
+  };
+
+  const loadModel = () => {
+    const loader = new GLTFLoader();
+    loader.load(
+      'car3d/model.gltf',
+      (gltf) => {
+        if (scene) scene.add(gltf.scene);
+        const model: THREE.Object3D[] = gltf.scene.children[0].children;
+        loadAllTexture(model);
+      },
+      (xhr) => {
+        // 侦听模型加载进度
+        console.info(`${(xhr.loaded / 13970297) * 100}% loaded`);
+        if (xhr.loaded >= 13970297) {
+          console.info('end');
+        }
+      },
+      (error) => {
+        // 加载出错时的回调
+        console.info(error);
+        console.info('An error happened');
+      },
+    );
+  };
+
+  const setupInfoPoint = () => {
+    if (!scene) return;
+    const pointTexture = new THREE.TextureLoader().load('car3d/point.png');
+
+    const group = new THREE.Group();
+    const materialC = new THREE.SpriteMaterial({
+      map: pointTexture,
+      color: 0xffffff,
+      fog: false,
+    });
+    for (let a = 0; a < poiPosArray.length; a++) {
+      const { x } = poiPosArray[a];
+      const y = poiPosArray[a].y - 0.5;
+      const { z } = poiPosArray[a];
+
+      const sprite = new THREE.Sprite(materialC);
+      sprite.scale.set(0.15, 0.15, 1);
+      sprite.position.set(x, y, z);
+      group.add(sprite);
+
+      poiObjects.push(sprite);
+    }
+    scene.add(group);
+
+    document.body.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (!camera) return;
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+
+      const intersects = raycaster.intersectObjects(poiObjects);
+      if (intersects.length > 0) {
+        const {
+          point: { x, y, z },
+        } = intersects[0];
+        if (oldP && oldT) {
+          moveCamera(
+            oldP,
+            oldT,
+            {
+              x: x + 0.1,
+              y: y - 0.1,
+              z: z - 0.4,
+            },
+            {
+              x: 1,
+              y: 0.5,
+              z: 1.5,
+            },
+          );
+        }
+      }
+    });
+  };
+
+  const init = () => {
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(
+      90,
+      document.body.clientWidth / document.body.clientHeight,
+      0.1,
+      100,
+    );
+    renderer = new THREE.WebGLRenderer();
+    textureLoader = new THREE.TextureLoader();
+    camera.position.set(0, 0, 3);
+    renderer.setSize(document.body.clientWidth, document.body.clientHeight);
+    const container = containerRef.current;
+    if (container) container.appendChild(renderer.domElement);
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.addEventListener('change', () => {
+      oldP = camera?.position;
+      oldT = controls?.target;
+    });
+    loadModel();
+    loop();
+    addLight();
+    setupInfoPoint();
   };
 
   useEffect(() => {

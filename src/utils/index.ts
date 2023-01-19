@@ -1,9 +1,8 @@
 import { history } from 'umi';
 import { PAGE_ENUM } from '@/configs';
 
-export const parseUrlPublic = (url: string) => {
-  return process.env.NODE_ENV === 'development' ? url : `/blog${url}`;
-};
+export const parseUrlPublic = (url: string) =>
+  (process.env.NODE_ENV === 'development' ? url : `/blog${url}`);
 
 const audio = new Audio();
 audio.src = parseUrlPublic('/snow.mp3');
