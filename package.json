@@ -16,9 +16,6 @@
     "prettier": "prettier -c src",
     "prettier:fix": "prettier --write -l src"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "lint-staged": {
     "{src,config}/**/*.{js,ts,jsx,tsx,json,css,less,scss,html,md}": [
       "prettier --write -l",
