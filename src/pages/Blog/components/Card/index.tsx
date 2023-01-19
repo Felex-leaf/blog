@@ -1,9 +1,9 @@
 import type { CSSProperties, MouseEvent } from 'react';
 
+import classNames from 'classnames';
 import Button from '@/components/Button';
 
 import { jump } from '@/utils';
-import classNames from 'classnames';
 import styles from './index.less';
 
 interface ICard {
@@ -23,7 +23,11 @@ export default function Card(props: ICard) {
     if (path) jump(path);
   };
   return (
-    <div className={classNames([styles.cardWrap, className])} style={style} onClick={handleClick}>
+    <div
+      className={classNames([styles.cardWrap, className])}
+      style={style}
+      onClick={handleClick}
+    >
       <div>
         <h2 className={styles.dontRTitle}>{title}</h2>
         <div className={styles.dontRDesc}>{desc}</div>

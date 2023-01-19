@@ -1,7 +1,7 @@
-import { isType } from '@/utils';
 import classNames from 'classnames';
 import type { CSSProperties } from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { isType } from '@/utils';
 import styles from './index.less';
 
 interface IHamburger {
@@ -24,7 +24,15 @@ enum Size {
 export default function Hamburger(props: IHamburger) {
   const [isActive, setIsActive] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const { onClick, style, type = 1, className, isActive: active, theme, size = 'normal' } = props;
+  const {
+    onClick,
+    style,
+    type = 1,
+    className,
+    isActive: active,
+    theme,
+    size = 'normal',
+  } = props;
   useEffect(() => {
     if (theme) {
       const el = ref.current;

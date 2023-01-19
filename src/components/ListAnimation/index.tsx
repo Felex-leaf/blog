@@ -36,7 +36,9 @@ export default class ListAnimation extends Component<IListAnimationProps> {
   componentDidMount() {
     const { children, current, to, viewNum, rankingHeight } = this.props;
     const scrollTop =
-      current - Math.ceil(viewNum / 2) > 0 ? (current - Math.ceil(viewNum / 2)) * 60 : 0;
+      current - Math.ceil(viewNum / 2) > 0
+        ? (current - Math.ceil(viewNum / 2)) * 60
+        : 0;
     const scrollBox = document.getElementById('scrollBox');
     if (!scrollBox) return;
     scrollBox.scrollTop = scrollTop;
@@ -77,11 +79,14 @@ export default class ListAnimation extends Component<IListAnimationProps> {
             duration: totalTime / (current - to),
             delay,
             onStart: ({ target }) => {
-              const numDom: IElement = target.getElementsByClassName('rankingNumber')[0];
+              const numDom: IElement =
+                target.getElementsByClassName('rankingNumber')[0];
               if (!numDom) return;
               numDom.innerText = String(i + 2);
               if (i < 3) {
-                const awardDom = target.getElementsByClassName(`rankingAward${i + 1}`)[0];
+                const awardDom = target.getElementsByClassName(
+                  `rankingAward${i + 1}`,
+                )[0];
                 if (awardDom) {
                   awardDom.className = `rankingAward${i + 2}`;
                 }
@@ -92,9 +97,10 @@ export default class ListAnimation extends Component<IListAnimationProps> {
         if (i === current) {
           const offset = rankingHeight - (viewNum - 1) * 60;
           // 滚动条在底部定位处理
-          const length = rankingList.length;
+          const { length } = rankingList;
           const halfViewNum = Math.ceil(viewNum / 2);
-          const isBottom = scrollBox.scrollTop + scrollBox.clientHeight >= length * 60;
+          const isBottom =
+            scrollBox.scrollTop + scrollBox.clientHeight >= length * 60;
           let top = halfViewNum * 60;
           if (to < halfViewNum) {
             top = to * 60;
@@ -114,7 +120,8 @@ export default class ListAnimation extends Component<IListAnimationProps> {
             delay: totalTime / (current - to),
             onStart: ({ target }) => {
               const delay = totalTime / (current - to);
-              const numDom: IElement = target.getElementsByClassName('rankingNumber')[0];
+              const numDom: IElement =
+                target.getElementsByClassName('rankingNumber')[0];
               if (!numDom) return;
               const timer = setInterval(() => {
                 numDom.innerText = String(Number(numDom.innerText) - 1);
@@ -123,7 +130,9 @@ export default class ListAnimation extends Component<IListAnimationProps> {
                 clearInterval(timer);
                 numDom.innerText = String(to + 1);
                 if (to < 3) {
-                  const awardDom = target.getElementsByClassName(`rankingAward${current + 1}`)[0];
+                  const awardDom = target.getElementsByClassName(
+                    `rankingAward${current + 1}`,
+                  )[0];
                   if (awardDom) {
                     awardDom.className = `rankingAward${to + 1}`;
                   }
@@ -177,7 +186,10 @@ export default class ListAnimation extends Component<IListAnimationProps> {
     }, 1000);
   }
 
-  componentDidUpdate(preProp: IListAnimationProps, preState: IListAnimationState) {
+  componentDidUpdate(
+    preProp: IListAnimationProps,
+    preState: IListAnimationState,
+  ) {
     const { current, animation } = this.state;
     if (
       preState.animation[current] &&
@@ -201,7 +213,10 @@ export default class ListAnimation extends Component<IListAnimationProps> {
     const { animation } = this.state;
     return React.createElement(TweenOne, {
       ...item.props,
-      style: { ...item.props.style, marginBottom: i === current - 1 ? '60px' : '' },
+      style: {
+        ...item.props.style,
+        marginBottom: i === current - 1 ? '60px' : '',
+      },
       key: item.key,
       animation: animation[i],
       component: item.type,

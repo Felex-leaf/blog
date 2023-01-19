@@ -1,20 +1,15 @@
 module.exports = {
-  parser: "@typescript-eslint/parser",
-  plugins: [
-      "@typescript-eslint/eslint-plugin"
-  ],
   extends: [
-    "alloy",
-    "alloy/react",
-    "alloy/typescript"
+    './rules/base',
+    'prettier',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'eslint-config-airbnb',
+    './rules/es',
+    './rules/import',
+    './rules/jsx-a11y',
+    './rules/react',
+    './rules/typescript',
   ],
-  settings: {
-    react: {
-        version: "detect"
-    }
-  },
-  globals: {
-    JSX: true,
-    NodeJS: true,
-  }
+  parser: '@typescript-eslint/parser',
 };

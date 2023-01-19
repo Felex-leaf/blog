@@ -12,7 +12,11 @@ interface IRankingButton {
 export const RankingButton = (props: IRankingButton) => {
   const { onClick, style, className } = props;
   return (
-    <div className={classNames([styles.socialButton, className])} onClick={onClick} style={style}>
+    <div
+      className={classNames([styles.socialButton, className])}
+      onClick={onClick}
+      style={style}
+    >
       <div className={styles.rankingContent}>
         <div className={styles.rankingIcon}>
           <span className={styles.rankingIconStar} />

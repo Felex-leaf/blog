@@ -5,6 +5,7 @@ import Rankingboard from '@/components/Rankingboard';
 import { RankingButton } from '@/components/Rankingboard/RankingHeader';
 
 import styles from './index.less';
+
 let t: NodeJS.Timeout | null = null;
 
 export default function RankingList() {
@@ -34,7 +35,11 @@ export default function RankingList() {
           </Button>
         </div>
       </div>
-      {show && <Rankingboard style={isPC ? { width: 768 } : { width: '100%', maxWidth: 375 }} />}
+      {show && (
+        <Rankingboard
+          style={isPC ? { width: 768 } : { width: '100%', maxWidth: 375 }}
+        />
+      )}
     </div>
   );
 }

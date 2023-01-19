@@ -1,10 +1,10 @@
-import type { IOrbitControls, IPosition } from '@/pages/interface';
 import TWEEN from '@tweenjs/tween.js';
 import { Spin } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import type { IOrbitControls, IPosition } from '@/pages/interface';
 import type { IAllTexture, IMesh } from './interface';
 
 let scene: THREE.Scene | null = null;
@@ -149,9 +149,9 @@ export default function IndexPage() {
       fog: false,
     });
     for (let a = 0; a < poiPosArray.length; a++) {
-      const x = poiPosArray[a].x;
+      const { x } = poiPosArray[a];
       const y = poiPosArray[a].y - 0.5;
-      const z = poiPosArray[a].z;
+      const { z } = poiPosArray[a];
 
       const sprite = new THREE.Sprite(materialC);
       sprite.scale.set(0.15, 0.15, 1);
@@ -214,7 +214,7 @@ export default function IndexPage() {
       },
       (xhr) => {
         // 侦听模型加载进度
-        console.log((xhr.loaded / 13970297) * 100 + '% loaded');
+        console.log(`${(xhr.loaded / 13970297) * 100}% loaded`);
         if (xhr.loaded >= 13970297) {
           console.log('end');
         }
@@ -258,7 +258,7 @@ export default function IndexPage() {
     ];
     const loadNextTexture = () => {
       const textureName = textures[loadIndex];
-      textureLoader?.load('car3d/textures/' + textureName + '.jpg', (texture) => {
+      textureLoader?.load(`car3d/textures/${textureName}.jpg`, (texture) => {
         if (loadIndex < textures.length - 1) {
           allTexture[textureName] = texture;
           loadIndex++;
@@ -266,8 +266,9 @@ export default function IndexPage() {
         } else {
           for (const key in model) {
             if (Object.prototype.hasOwnProperty.call(model, key)) {
-              const modelItem: IMesh<THREE.MeshStandardMaterial | THREE.MeshPhongMaterial | null> =
-                model[key];
+              const modelItem: IMesh<
+                THREE.MeshStandardMaterial | THREE.MeshPhongMaterial | null
+              > = model[key];
               switch (modelItem.name) {
                 case 'smart_lungu0':
                 case 'smart_lungu1':
@@ -293,7 +294,8 @@ export default function IndexPage() {
                   modelItem.material.opacity = 0.2;
                   modelItem.material.envMap = allTexture.skymap;
                   // 环境反射贴图envMap的映射方式，这里用的是一个叫等量矩形投影的映射方法
-                  modelItem.material.envMap.mapping = THREE.EquirectangularReflectionMapping;
+                  modelItem.material.envMap.mapping =
+                    THREE.EquirectangularReflectionMapping;
                   break;
                 case 'smart_tianchuang':
                   modelItem.material = new THREE.MeshPhongMaterial();
@@ -301,7 +303,8 @@ export default function IndexPage() {
                   modelItem.material.transparent = true;
                   modelItem.material.opacity = 0.5;
                   modelItem.material.envMap = allTexture.skymap;
-                  modelItem.material.envMap.mapping = THREE.EquirectangularReflectionMapping;
+                  modelItem.material.envMap.mapping =
+                    THREE.EquirectangularReflectionMapping;
                   break;
                 case 'smart_shachepan':
                   modelItem.material = new THREE.MeshStandardMaterial();
@@ -398,7 +401,8 @@ export default function IndexPage() {
                   modelItem.material.normalMap = allTexture.cheshen_nor;
                   modelItem.material.aoMap = allTexture.cheshen_occ;
                   modelItem.material.envMap = allTexture.skymap;
-                  modelItem.material.envMap.mapping = THREE.EquirectangularReflectionMapping;
+                  modelItem.material.envMap.mapping =
+                    THREE.EquirectangularReflectionMapping;
                   modelItem.material.envMapIntensity = 1;
                   break;
                 case 'smart_chejia':
@@ -434,7 +438,12 @@ export default function IndexPage() {
     >
       <Spin tip="模型加载中..." spinning={loading} style={{ height: '100vh' }}>
         <div
-          style={{ position: 'absolute', top: 0, height: '100vh', width: '100vw' }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            height: '100vh',
+            width: '100vw',
+          }}
           ref={containerRef}
         />
       </Spin>

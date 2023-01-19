@@ -8,7 +8,9 @@ import styles from './index.less';
 
 export default function HamburgerPage() {
   const [color, setColor] = useState('');
-  const types: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const types: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+  ];
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setColor(e.target.value);
   };

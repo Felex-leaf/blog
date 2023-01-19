@@ -3,13 +3,15 @@ import { Menu } from 'antd';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import type { History, Location } from 'umi';
- 
+
 import Hamburger from '@/components/Hamburger';
 import ThemeBtn from '@/components/ThemeBtn';
 import { PAGE_ENUM } from '@/configs';
 import { jump } from '@/utils';
 
 import styles from './index.less';
+
+const s = '';
 
 interface IBlogLayout {
   children: JSX.Element;
@@ -19,7 +21,11 @@ interface IBlogLayout {
   location: Location;
 }
 
-export default function BlogLayout({ route: { routes }, location, children }: IBlogLayout) {
+export default function BlogLayout({
+  route: { routes },
+  location,
+  children,
+}: IBlogLayout) {
   const [selectedKeys, setSelectedKeys] = useState('');
   const [isActive, setIsActive] = useState(false);
 
@@ -67,7 +73,10 @@ export default function BlogLayout({ route: { routes }, location, children }: IB
                 routes.map(
                   (item: Route) =>
                     !item.hidden && (
-                      <Menu.Item key={item.path} onClick={handleJump.bind(null, item.path)}>
+                      <Menu.Item
+                        key={item.path}
+                        onClick={handleJump.bind(null, item.path)}
+                      >
                         {item.name}
                       </Menu.Item>
                     ),
@@ -75,7 +84,11 @@ export default function BlogLayout({ route: { routes }, location, children }: IB
             </Menu>
             <ThemeBtn className={styles.dontRthemeBtn} />
           </div>
-          <Hamburger className={styles.dontRhamburger} onClick={handleClick} isActive={isActive} />
+          <Hamburger
+            className={styles.dontRhamburger}
+            onClick={handleClick}
+            isActive={isActive}
+          />
         </div>
       </header>
       <div className={styles.dontRDiv} />

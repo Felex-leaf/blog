@@ -41,7 +41,7 @@ export default function Home() {
         id="box_container"
         hasAnimation
         isOpenbox={isOpenBox}
-        isShowBox={true}
+        isShowBox
         onClick={handleClick}
         style={{
           top: '50%',

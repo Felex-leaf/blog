@@ -24,7 +24,12 @@ function Button(props: IButton) {
     if (btn) btn.style.setProperty('--theme-color--', theme);
   }, [theme]);
   return (
-    <div {...arg} className={classNames([className, styles.button])} style={allStyle} ref={ref}>
+    <div
+      {...arg}
+      className={classNames([className, styles.button])}
+      style={allStyle}
+      ref={ref}
+    >
       {children}
     </div>
   );

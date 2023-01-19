@@ -1,6 +1,6 @@
-import Ranking from '@/components/Ranking';
 import React from 'react';
 import Lottie from 'react-lottie';
+import Ranking from '@/components/Ranking';
 import styles from '../index.less';
 import StarLottie from './StarLottie.json';
 
@@ -21,8 +21,11 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
     boxY: 0,
     add: false,
   };
+
   audio: HTMLAudioElement[] = [];
+
   t: (NodeJS.Timer | number)[] = [];
+
   async componentDidMount() {
     this.setState({
       userIntegralNum: 10,
@@ -52,6 +55,7 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
       }, 1000),
     );
   }
+
   componentWillUnmount() {
     if (this.audio && this.audio.length > 0) {
       this.audio.forEach((item) => {
@@ -61,11 +65,16 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
       this.t.forEach((item) => clearTimeout(item as NodeJS.Timer));
     }
   }
+
   onMoveStar = () => {
     const { integralNum } = this.props;
     const targetDoms = document.getElementById('ranking_star') as any;
-    const sourceDoms = document.getElementsByClassName('box_star___6Wbry') as any;
-    const sourceWrapDoms = document.getElementsByClassName('star_Item___3stlc') as any;
+    const sourceDoms = document.getElementsByClassName(
+      'box_star___6Wbry',
+    ) as any;
+    const sourceWrapDoms = document.getElementsByClassName(
+      'star_Item___3stlc',
+    ) as any;
     sourceDoms.forEach((element: any, index: number) => {
       if (
         targetDoms.getBoundingClientRect() &&
@@ -80,8 +89,8 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
         const rectY = targetRect.top - sourceWrapRect.top - offset;
         if (rectY || rectX) {
           const scale = integralNum < 10 ? 0.6 : 0.3;
-          const transformStrX = 'translateX(' + rectX + 'px) scale(' + scale + ', ' + scale + ')';
-          const transformStrY = 'translateY(' + rectY + 'px)';
+          const transformStrX = `translateX(${rectX}px) scale(${scale}, ${scale})`;
+          const transformStrY = `translateY(${rectY}px)`;
           ((i: number) => {
             this.t.push(
               setTimeout(() => {
@@ -119,6 +128,7 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
       }
     });
   };
+
   componentDidUpdate(prevProps: any) {
     if (
       !this.state.add &&
@@ -220,7 +230,9 @@ export default class AwardModel extends React.PureComponent<IAwardModelProps> {
                 >
                   <span
                     className={styles.box_star}
-                    style={integralNum < 10 ? { width: '50px', height: '50px' } : {}}
+                    style={
+                      integralNum < 10 ? { width: '50px', height: '50px' } : {}
+                    }
                   />
                 </span>
               ))}

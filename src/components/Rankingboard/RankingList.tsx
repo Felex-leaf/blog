@@ -1,7 +1,7 @@
-import ListAnimation from '@/components/ListAnimation';
 import { Spin } from 'antd';
 import classNames from 'classnames';
 import { useEffect, useMemo, useState } from 'react';
+import ListAnimation from '@/components/ListAnimation';
 import styles from './index.less';
 
 const currentTab = 'friend';
@@ -78,7 +78,7 @@ const RankingList = () => {
   const halfViewNum = Math.ceil(viewNum / 2);
   const targetIndex = to - halfViewNum > 0 ? to - halfViewNum : 0;
   const offset = rankingHeight - (viewNum - 1) * 60;
-  const length = rankingList.length;
+  const { length } = rankingList;
   const top = useMemo(() => {
     let count = halfViewNum * 60;
     if (current < halfViewNum) {
@@ -136,15 +136,26 @@ const RankingList = () => {
                         <span className={`rankingAward${item.ranking}`} />
                       )}
                       <span
-                        className={classNames([styles.rankingNumber, 'rankingNumber'])}
-                        style={userId === item.userId ? { color: '#07A0F2' } : { color: '#666666' }}
+                        className={classNames([
+                          styles.rankingNumber,
+                          'rankingNumber',
+                        ])}
+                        style={
+                          userId === item.userId
+                            ? { color: '#07A0F2' }
+                            : { color: '#666666' }
+                        }
                       >
                         {item.ranking}
                       </span>
                     </div>
                     <div style={{ flex: 1 }} />
                     <div className={styles.rankingContentCenter}>
-                      <img className={styles.rankingTableAvater} alt="" src={item.avatar} />
+                      <img
+                        className={styles.rankingTableAvater}
+                        alt=""
+                        src={item.avatar}
+                      />
                       <span
                         style={
                           userId === item.userId

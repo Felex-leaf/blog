@@ -46,7 +46,10 @@ export default function (props: IBox) {
     <>
       {isShowBox && (
         <div
-          className={classnames([styles.box_content, { [styles.hasAnimation]: hasAnimation }])}
+          className={classnames([
+            styles.box_content,
+            { [styles.hasAnimation]: hasAnimation },
+          ])}
           id={id}
           style={style}
         >
@@ -58,8 +61,16 @@ export default function (props: IBox) {
             ])}
             style={small ? smallStyle : {}}
           />
-          {yellowShine && <span className={classnames([styles.box_shine, styles.yellow_shine])} />}
-          {whiteShine && <span className={classnames([styles.box_shine, styles.white_shine])} />}
+          {yellowShine && (
+            <span
+              className={classnames([styles.box_shine, styles.yellow_shine])}
+            />
+          )}
+          {whiteShine && (
+            <span
+              className={classnames([styles.box_shine, styles.white_shine])}
+            />
+          )}
         </div>
       )}
     </>

@@ -171,6 +171,8 @@ const AnimationSvg = (props: any) => {
   );
 };
 
-const AnimationIcon = (props: any) => <Icon component={AnimationSvg} {...props} />;
+const AnimationIcon = (props: any) => (
+  <Icon component={AnimationSvg} {...props} />
+);
 
 export default AnimationIcon;

@@ -1,8 +1,8 @@
-import { PAGE_ENUM } from '@/configs';
 import { history } from 'umi';
+import { PAGE_ENUM } from '@/configs';
 
 export const parseUrlPublic = (url: string) => {
-  return process.env.NODE_ENV === 'development' ? url : '/blog' + url;
+  return process.env.NODE_ENV === 'development' ? url : `/blog${url}`;
 };
 
 const audio = new Audio();
@@ -32,7 +32,7 @@ export function initRem(): void {
       deviceWidth = 320;
     }
     const fontSize = deviceWidth / 10;
-    docEle.style.fontSize = fontSize.toFixed(3) + 'px';
+    docEle.style.fontSize = `${fontSize.toFixed(3)}px`;
   }
   setHtmlFontSize();
   window.addEventListener('resize', setHtmlFontSize);

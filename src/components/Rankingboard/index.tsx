@@ -32,12 +32,18 @@ const Rankingboard = (props: IRankingboard) => {
     <div className={styles.rankingWrap} style={style}>
       <div className={styles.rankingBoardTop}>
         <div className={styles.rankingBoardTopLeft}>
-          <img alt="" src={selfInfo.avatar} className={styles.rankingBoardAvater} />
+          <img
+            alt=""
+            src={selfInfo.avatar}
+            className={styles.rankingBoardAvater}
+          />
           <span className={styles.rankingBoardName}>{selfInfo.userName}</span>
         </div>
         <div className={styles.rankingBoardTopRight}>
           <span className={styles.rankingStar} />
-          <span className={styles.rankingBoardIntegral}>{selfInfo.integralNum}</span>
+          <span className={styles.rankingBoardIntegral}>
+            {selfInfo.integralNum}
+          </span>
         </div>
       </div>
       <RankingList />

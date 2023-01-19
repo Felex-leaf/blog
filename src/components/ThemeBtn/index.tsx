@@ -1,7 +1,7 @@
-import store from '@/store';
 import classNames from 'classnames';
 import type { CSSProperties, MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
+import store from '@/store';
 
 import storage from '@/utils/storage';
 import MoonIcon from './components/MoonIcon';
@@ -43,8 +43,16 @@ export default function ThemeBtn(props: IThemeBtn) {
   }, []);
 
   return (
-    <div onClick={handleClick} className={classNames([styles.themeBtn, className])} style={style}>
-      {!dark ? <SunIcon style={{ fontSize: 50 }} /> : <MoonIcon style={{ fontSize: 40 }} />}
+    <div
+      onClick={handleClick}
+      className={classNames([styles.themeBtn, className])}
+      style={style}
+    >
+      {!dark ? (
+        <SunIcon style={{ fontSize: 50 }} />
+      ) : (
+        <MoonIcon style={{ fontSize: 40 }} />
+      )}
     </div>
   );
 }

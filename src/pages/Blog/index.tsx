@@ -22,7 +22,13 @@ export default observer(() => {
   return (
     <div>
       <div className={styles.bannerWrap} style={{ marginBottom: '40px' }}>
-        <div className={classNames([styles.banner, styles.dontRbanner, 'typeArea'])}>
+        <div
+          className={classNames([
+            styles.banner,
+            styles.dontRbanner,
+            'typeArea',
+          ])}
+        >
           <div className={styles.titleWrap}>
             <h1 className={classNames([styles.title, styles.dontRTitle])}>
               排行榜上榜动画，基于antd-motion实现。
@@ -49,7 +55,13 @@ export default observer(() => {
           </Title>
           <div className={styles.cardWrap}>
             {contents.map(({ title, desc, path }) => (
-              <Card title={title} desc={desc} path={path} theme={theme} className={styles.card} />
+              <Card
+                title={title}
+                desc={desc}
+                path={path}
+                theme={theme}
+                className={styles.card}
+              />
             ))}
           </div>
         </div>

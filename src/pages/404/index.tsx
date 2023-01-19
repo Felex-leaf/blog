@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import { PAGE_ENUM } from '@/configs';
 import { jump } from '@/utils';
-import { useEffect, useState } from 'react';
 
 import styles from './index.less';
 

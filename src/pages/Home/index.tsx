@@ -32,14 +32,23 @@ export default function Home(props: IHome) {
   return (
     <div>
       <div className={styles.bannerWrap} style={{ marginBottom: '150px' }}>
-        <div className={classNames([styles.banner, styles.dontRbanner, 'typeArea'])}>
+        <div
+          className={classNames([
+            styles.banner,
+            styles.dontRbanner,
+            'typeArea',
+          ])}
+        >
           <div className={styles.titleWrap}>
             <h1 className={classNames([styles.title, styles.dontRTitle])}>
               排行榜上榜动画，基于antd-motion实现。
             </h1>
             <h2 className={styles.dontRDescTitle}>精美的动画让页面动起来</h2>
             <div>
-              <Button className={styles.button} onClick={jump.bind(null, PAGE_ENUM.RANKING)}>
+              <Button
+                className={styles.button}
+                onClick={jump.bind(null, PAGE_ENUM.RANKING)}
+              >
                 立即查看
               </Button>
             </div>
@@ -77,7 +86,10 @@ export default function Home(props: IHome) {
           </div>
         </div>
       </div>
-      <div id="blogArticle" className={classNames(['typeArea', styles.blogArticleWrap])}>
+      <div
+        id="blogArticle"
+        className={classNames(['typeArea', styles.blogArticleWrap])}
+      >
         <Title content="Blog Article">
           <>
             博客<span style={{ color: 'rgb(71 120 224)' }}>文章</span>
@@ -118,16 +130,31 @@ export default function Home(props: IHome) {
               justifyContent: 'space-between',
             }}
           >
-            <ArticleCard title="星星动画" onClick={jump.bind(null, PAGE_ENUM.STAR)}>
-              <div className="ellipsis">基于react-lottie的实现的星星动画，点我进行查看！</div>
+            <ArticleCard
+              title="星星动画"
+              onClick={jump.bind(null, PAGE_ENUM.STAR)}
+            >
+              <div className="ellipsis">
+                基于react-lottie的实现的星星动画，点我进行查看！
+              </div>
               <div style={{ marginTop: 10 }}>更多</div>
             </ArticleCard>
-            <ArticleCard title="3d展示" onClick={jump.bind(null, PAGE_ENUM.THREE)}>
-              <div className="ellipsis">基于Threejs实现的3d展示效果，点我进行查看！</div>
+            <ArticleCard
+              title="3d展示"
+              onClick={jump.bind(null, PAGE_ENUM.THREE)}
+            >
+              <div className="ellipsis">
+                基于Threejs实现的3d展示效果，点我进行查看！
+              </div>
               <div style={{ marginTop: 10 }}>更多</div>
             </ArticleCard>
-            <ArticleCard title="canvas下雪动画" onClick={jump.bind(null, PAGE_ENUM.SNOW)}>
-              <div className="ellipsis">基于原生canvas实现的下雪动画，点我进行查看！</div>
+            <ArticleCard
+              title="canvas下雪动画"
+              onClick={jump.bind(null, PAGE_ENUM.SNOW)}
+            >
+              <div className="ellipsis">
+                基于原生canvas实现的下雪动画，点我进行查看！
+              </div>
               <div style={{ marginTop: 10 }}>更多</div>
             </ArticleCard>
           </Col>
