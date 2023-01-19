@@ -96,8 +96,6 @@ export default function Snow() {
     });
   }
   return (
-    <>
-      <canvas ref={canvasRef} height={height} width={width} style={{ overflow: 'hidden' }} />
-    </>
+    <canvas ref={canvasRef} height={height} width={width} style={{ overflow: 'hidden' }} />
   );
 }

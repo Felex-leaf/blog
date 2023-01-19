@@ -13,7 +13,7 @@ import Card from './components/Card';
 import ToTopBtn from '@/components/ToTopBtn';
 import styles from './index.less';
 
-export default observer(function Blog() {
+export default observer(() => {
   const [theme, setTheme] = useState('#333');
   const { ThemeStore } = store;
   useEffect(() => {

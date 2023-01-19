@@ -1,8 +1,20 @@
 module.exports = {
-  extends: 'eslint-config-egg/typescript',
-
-  // 根据个人习惯自定义rule
-  rules: {
-    'react-hooks/exhaustive-deps': 'error', // react-hooks 依赖检查
+  parser: "@typescript-eslint/parser",
+  plugins: [
+      "@typescript-eslint/eslint-plugin"
+  ],
+  extends: [
+    "alloy",
+    "alloy/react",
+    "alloy/typescript"
+  ],
+  settings: {
+    react: {
+        version: "detect"
+    }
   },
+  globals: {
+    JSX: true,
+    NodeJS: true,
+  }
 };

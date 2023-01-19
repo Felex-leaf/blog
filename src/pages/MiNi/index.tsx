@@ -162,7 +162,7 @@ export default function IndexPage() {
     }
     scene.add(group);
 
-    document.body.addEventListener('click', function (event) {
+    document.body.addEventListener('click', (event) => {
       event.preventDefault();
       if (!camera) return;
       const raycaster = new THREE.Raycaster();
@@ -207,19 +207,19 @@ export default function IndexPage() {
     const loader = new GLTFLoader();
     loader.load(
       'car3d/model.gltf',
-      function (gltf) {
+      (gltf) => {
         if (scene) scene.add(gltf.scene);
         const model: THREE.Object3D[] = gltf.scene.children[0].children;
         loadAllTexture(model);
       },
-      function (xhr) {
+      (xhr) => {
         // 侦听模型加载进度
         console.log((xhr.loaded / 13970297) * 100 + '% loaded');
         if (xhr.loaded >= 13970297) {
           console.log('end');
         }
       },
-      function (error) {
+      (error) => {
         // 加载出错时的回调
         console.log(error);
         console.log('An error happened');
@@ -258,7 +258,7 @@ export default function IndexPage() {
     ];
     const loadNextTexture = () => {
       const textureName = textures[loadIndex];
-      textureLoader?.load('car3d/textures/' + textureName + '.jpg', function (texture) {
+      textureLoader?.load('car3d/textures/' + textureName + '.jpg', (texture) => {
         if (loadIndex < textures.length - 1) {
           allTexture[textureName] = texture;
           loadIndex++;
