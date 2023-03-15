@@ -1,4 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-npm run ts-coverage -- --lintStage --allCommitFileInclude && yarn lint-staged && yarn check-spelling && yarn prettier:fix
