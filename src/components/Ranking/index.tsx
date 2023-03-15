@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import * as styles from '../index.less';
+import styles from '../index.less';
 
 interface IRanking {
   integralNum: number;

@@ -10,12 +10,9 @@ export default defineConfig({
     history: {
         type: 'hash',
     },
+    favicons: ['./favicon.ico'],
     antd: {},
     fastRefresh: true,
-    theme: {
-        '@themeBgColor': 'var(--theme-bgColor)',
-        '@themeColor': 'var(--theme-Color)',
-    },
     lessLoader: {
         modifyVars: {
             // 或者可以通过 less 文件覆盖（文件路径为绝对路径）

@@ -2,7 +2,7 @@ import type { Route } from '@ant-design/pro-layout/lib/typings';
 import { Menu } from 'antd';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
-import type { History, Location } from 'umi';
+import { history, Outlet, useAppData } from 'umi';
 
 import Hamburger from '@/components/Hamburger';
 import ThemeBtn from '@/components/ThemeBtn';
@@ -11,25 +11,20 @@ import { jump } from '@/utils';
 
 import styles from './index.less';
 
-interface IBlogLayout {
-  children: JSX.Element;
-  routes: Route[];
-  route: Route;
-  history: History;
-  location: Location;
-}
-
-export default function BlogLayout({
-  route: { routes },
-  location,
-  children,
-}: IBlogLayout) {
+export default function BlogLayout() {
   const [selectedKeys, setSelectedKeys] = useState('');
   const [isActive, setIsActive] = useState(false);
+  const { routes } = useAppData();
+
+  const handleSelectKeys = () => {
+    const { location } = history;
+    setSelectedKeys(location.pathname);
+  };
 
   useEffect(() => {
-    setSelectedKeys(location.pathname);
-  }, [location.pathname]);
+    handleSelectKeys();
+    history.listen(handleSelectKeys);
+  }, []);
 
   const handleClick = (_isActive: boolean) => {
     setIsActive(_isActive);
@@ -68,18 +63,20 @@ export default function BlogLayout({
               selectedKeys={[selectedKeys]}
             >
               {
-                routes?.map(
-                  (item: Route) =>
-                    !item.hidden && (
+                Object.keys(routes)?.map(
+                  (key) => {
+                    const item = routes[key] as Route;
+                    return item.show && (
                       <Menu.Item
                         key={item.path}
                         onClick={() => handleJump(item.path)}
                       >
                         {item.name}
                       </Menu.Item>
-                    ),
+                    );
+                  },
                 )
-}
+              }
             </Menu>
             <ThemeBtn className={styles.dontRthemeBtn} />
           </div>
@@ -91,7 +88,7 @@ export default function BlogLayout({
         </div>
       </header>
       <div className={styles.dontRDiv} />
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}><Outlet /></main>
     </main>
   );
 }

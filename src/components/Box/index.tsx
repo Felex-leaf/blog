@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import type { CSSProperties } from 'react';
 import React from 'react';
-import * as styles from '../index.less';
+import styles from '../index.less';
 
 interface IBox {
   isOpenbox: boolean;

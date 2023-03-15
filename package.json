@@ -16,6 +16,11 @@
     "prettier": "prettier -c src",
     "prettier:fix": "prettier --write -l src"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "{src,config}/**/*.{js,ts,jsx,tsx,json,css,less,scss,html,md}": [
       "prettier --write -l",
@@ -53,6 +58,7 @@
     "@types/three": "^0.131.1",
     "@typescript-eslint/eslint-plugin": "5.36.2",
     "@typescript-eslint/parser": "4.33.0",
+    "@umijs/max": "^4.0.0",
     "eslint": "7.32.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.5.0",
@@ -73,6 +79,6 @@
     "stylelint-config-standard": "20.0.0",
     "stylelint-scss": "3.21.0",
     "typescript": "3.9.10",
-    "@umijs/max": "^4.0.0"
+    "yorkie": "^2.0.0"
   }
 }
