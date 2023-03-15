@@ -11,10 +11,7 @@ export default defineConfig({
         type: 'hash',
     },
     antd: {},
-    nodeModulesTransform: {
-        type: 'none',
-    },
-    fastRefresh: {},
+    fastRefresh: true,
     theme: {
         '@themeBgColor': 'var(--theme-bgColor)',
         '@themeColor': 'var(--theme-Color)',
@@ -26,9 +23,7 @@ export default defineConfig({
         },
     },
     title: 'Felex',
-    favicon: './favicon.ico',
     routes,
-    dynamicImport: {},
     extraPostCSSPlugins: [
         pxtorem({
             rootValue: 120, //这里根据设计稿大小配置,一般是375

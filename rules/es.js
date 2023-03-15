@@ -73,8 +73,7 @@ module.exports = {
     ],
     // 使用 babel/semi，实例属性需要加分号
     semi: 'off',
-    // indent: ['error', 2, { SwitchCase: 1 }],
-    indent: 'off', // prettier控制
+    indent: ['error', 2, { SwitchCase: 1 }],
     camelcase: [
       'error',
       {

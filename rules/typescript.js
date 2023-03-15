@@ -89,7 +89,7 @@ module.exports = {
       { allowTernary: true, allowShortCircuit: true },
     ],
 
-    indent: 'off',
+    indent: ['error', 2, { SwitchCase: 1 }],
     '@typescript-eslint/indent': 'off', // 改为由 prettier接管
     // 禁止使用 non-null 断言 （off 虽然违背了开启严格的 null-checking 的初衷，但是部分情况下确实会需要这样处理）
     // example foo.bar!.includes('baz');  -> foo.bar?.includes('baz');
