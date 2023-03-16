@@ -13,11 +13,16 @@ import Card from './components/Card';
 import ToTopBtn from '@/components/ToTopBtn';
 import styles from './index.less';
 
-const contents = [
+export const contents = [
   {
     title: '排行榜上榜动画',
     desc: '基于react-lottie和antmotion结合实现的排行榜动画效果，点我进行查看！',
     path: PAGE_ENUM.RANKING,
+  },
+  {
+    title: '图片背景色计算',
+    desc: '根据图片边缘原色计算出主要色调输出，点我进行查看！',
+    path: PAGE_ENUM.IMAGE,
   },
   {
     title: '星星动画',

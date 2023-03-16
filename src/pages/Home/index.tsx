@@ -16,6 +16,7 @@ import StructureIcon from './components/StructureIcon';
 
 import banner from '@/assets/banner.png';
 import styles from './index.less';
+import { contents } from '../Blog';
 
 const data = [
   {
@@ -182,33 +183,19 @@ export default function Home() {
               justifyContent: 'space-between',
             }}
           >
-            <ArticleCard
-              title="星星动画"
-              onClick={() => jump(PAGE_ENUM.STAR)}
-            >
-              <div className="ellipsis">
-                基于react-lottie的实现的星星动画，点我进行查看！
-              </div>
-              <div style={{ marginTop: 10 }}>更多</div>
-            </ArticleCard>
-            <ArticleCard
-              title="3d展示"
-              onClick={() => jump(PAGE_ENUM.THREE)}
-            >
-              <div className="ellipsis">
-                基于Threejs实现的3d展示效果，点我进行查看！
-              </div>
-              <div style={{ marginTop: 10 }}>更多</div>
-            </ArticleCard>
-            <ArticleCard
-              title="canvas下雪动画"
-              onClick={() => jump(PAGE_ENUM.SNOW)}
-            >
-              <div className="ellipsis">
-                基于原生canvas实现的下雪动画，点我进行查看！
-              </div>
-              <div style={{ marginTop: 10 }}>更多</div>
-            </ArticleCard>
+            {
+              contents.slice(1, 4).map(({ title, path, desc }) => (
+                <ArticleCard
+                  title={title}
+                  onClick={() => jump(path)}
+                >
+                  <div className="ellipsis">
+                    {desc}
+                  </div>
+                  <div style={{ marginTop: 10 }}>更多</div>
+                </ArticleCard>
+              ))
+            }
           </Col>
         </Row>
       </div>

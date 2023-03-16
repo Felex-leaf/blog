@@ -61,23 +61,17 @@ export default function BlogLayout() {
               theme="dark"
               mode={isActive ? 'inline' : 'horizontal'}
               selectedKeys={[selectedKeys]}
-            >
-              {
-                Object.keys(routes)?.map(
-                  (key) => {
-                    const item = routes[key] as Route;
-                    return item.show && (
-                      <Menu.Item
-                        key={item.path}
-                        onClick={() => handleJump(item.path)}
-                      >
-                        {item.name}
-                      </Menu.Item>
-                    );
-                  },
-                )
-              }
-            </Menu>
+              items={Object.keys(routes).filter((key) => (routes[key] as Route).show)?.map(
+                (key) => {
+                  const item = routes[key] as Route;
+                  return {
+                    label: item.name,
+                    key: item.path,
+                    onClick: () => handleJump(item.path),
+                  };
+                },
+              )}
+            />
             <ThemeBtn className={styles.dontRthemeBtn} />
           </div>
           <Hamburger

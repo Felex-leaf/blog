@@ -45,6 +45,10 @@ export default [
         component: '@/pages/Hamburger',
       },
       {
+        path: '/image',
+        component: '@/pages/ImageBg',
+      },
+      {
         path: '*',
         redirect: '/404',
       },
