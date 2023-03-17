@@ -79,7 +79,7 @@ function ImageBg() {
       : `rgb(${rgbComponents.join(',')})`;
 
     // skip colors in the ignore list
-    if (ignore.indexOf(color) !== -1) {
+    if (ignore.some((_c) => color?.includes(_c))) {
       return countMap;
     }
 
@@ -136,7 +136,7 @@ function ImageBg() {
       if (!u) return;
       setLoading(true);
       const { data, height, width } = await getImageData(u);
-      const counts = getAllCounts(data, height, width, s);
+      const counts = getAllCounts(data, height, width, s, ['255,255,255', '0,0,0']);
       if (!imgBgRef.current) return;
       setC(counts[0]?.color);
     } finally {
@@ -158,12 +158,10 @@ function ImageBg() {
     </div>
   );
 
-  useEffect(() => {
-    console.info(`背景色${loading ? '计算中...' : '调整成功'}`);
-  }, [loading]);
-
   return (
     <div ref={imgBgRef} className="image-bg" style={{ backgroundColor: c }}>
+      <div style={{ color: c }} className="image-bg-color">背景色： {c}</div>
+      {loading && <span style={{ color: c }} className="image-bg-loading">背景色计算中...</span>}
       <div className="image-bg-control">
         <Upload
           name="avatar"
@@ -198,7 +196,6 @@ function ImageBg() {
           调整背景色
         </Button>
       </div>
-      {loading && <span style={{ color: c }} className="image-bg-loading">背景色计算中...</span>}
     </div>
   );
 }
