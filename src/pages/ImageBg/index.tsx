@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { InputNumber, Upload, UploadProps } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import Button from '@/components/Button';
@@ -32,8 +32,6 @@ function ImageBg() {
   }> => {
     const img = new Image();
 
-    // Can't set cross origin to be anonymous for data url's
-    // https://github.com/mrdoob/three.js/issues/1305
     if (!src.startsWith('data')) img.crossOrigin = 'Anonymous';
 
     return new Promise((resolve, reject) => {

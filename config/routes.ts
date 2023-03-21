@@ -49,6 +49,10 @@ export default [
         component: '@/pages/ImageBg',
       },
       {
+        path: '/heart',
+        component: '@/pages/Heart',
+      },
+      {
         path: '*',
         redirect: '/404',
       },

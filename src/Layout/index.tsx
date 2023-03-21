@@ -1,5 +1,6 @@
 import type { Route } from '@ant-design/pro-layout/lib/typings';
 import { Menu } from 'antd';
+import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { history, Outlet, useAppData } from 'umi';
@@ -8,13 +9,19 @@ import Hamburger from '@/components/Hamburger';
 import ThemeBtn from '@/components/ThemeBtn';
 import { PAGE_ENUM } from '@/configs';
 import { jump } from '@/utils';
+import store from '@/store';
 
 import styles from './index.less';
 
-export default function BlogLayout() {
+const style = {
+  display: 'none',
+};
+
+export default observer(() => {
   const [selectedKeys, setSelectedKeys] = useState('');
   const [isActive, setIsActive] = useState(false);
   const { routes } = useAppData();
+  const { GlobalStore } = store;
 
   const handleSelectKeys = () => {
     const { location } = history;
@@ -24,6 +31,7 @@ export default function BlogLayout() {
   useEffect(() => {
     handleSelectKeys();
     history.listen(handleSelectKeys);
+    if (!location.href.includes('heart')) GlobalStore.setShowMeun(true);
   }, []);
 
   const handleClick = (_isActive: boolean) => {
@@ -40,7 +48,7 @@ export default function BlogLayout() {
   };
   return (
     <main className={styles.container}>
-      <header className={styles.dontRHeader}>
+      <header className={styles.dontRHeader} style={!GlobalStore?.show ? style : {}}>
         <div className={classNames(['typeArea', styles.warp])}>
           <h1
             className={classNames([styles.logo, 'scaleAnm'])}
@@ -81,8 +89,8 @@ export default function BlogLayout() {
           />
         </div>
       </header>
-      <div className={styles.dontRDiv} />
+      <div className={styles.dontRDiv} style={!GlobalStore?.show ? style : {}} />
       <main className={styles.main}><Outlet /></main>
     </main>
   );
-}
+});
