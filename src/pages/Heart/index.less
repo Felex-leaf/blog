@@ -10,20 +10,28 @@
   })
 }
 
+.heart-wrap {
+  width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .heart-fireworks,
 .heart-left,
 .heart-right,
 .heart-left-line,
-.heart-right-line,
-.heart-center {
-  position: relative;
+.heart-right-line {
+  position: absolute;
 }
 
 .heart-center {
+  position: relative;
   top: 40px;
-  left: 6px;
   color: #ff5d60;
-  font-size: 20px;
+  font-size: 28px;
+  white-space: nowrap;
 }
 
 .heart-left {

@@ -92,13 +92,12 @@ export default function HeartFireworks({
       });
       endS.current = newS;
       setStyles(newS);
-      setInterval(doS, 1500);
+      setInterval(doS, 1000);
     }, 100);
   }, []);
 
   return (
     <div className="heart-fireworks" style={style}>
-      {/* <div className="heart-item" /> */}
       {
         styles?.map(({ deg: d, ...stl }) => (
           <div key={d} className="heart-item" style={stl} />
